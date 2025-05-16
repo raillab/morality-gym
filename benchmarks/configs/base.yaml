@@ -1,0 +1,28 @@
+env:
+  env_config: sml_static_2l_1h.json # Name of env config
+  morality_tree_config: asimov_3_laws.json
+  env_id: Morality-v0 # the name of test environment 
+  env_overrides:
+    flatten_observation: True
+    action_discrete: False
+    seed: 42
+  max_episode_steps: 1024
+  time_limit: 1024
+
+model:
+  algorithm: PPOLag # algorithm to train
+train:
+  total_timesteps: 50000 # total number of steps to train for algorithm
+  steps_per_epoch: 2048
+  update_iters: 1
+  save: True
+  vector_env_nums: 1 # number of vector envs to use for training
+  parallel: 1 # number of paralleled progress for calculations
+  eval_freq: 1
+logger:
+  log_dir: "./runs"
+  wandb_project: safebench
+  use_wandb: False
+evaluation:
+  evaluate: True # Render after training
+  eval_iters: 1

@@ -1,0 +1,41 @@
+{
+  "name": "",
+  "run_type":  "learn",
+  "learner_kwargs": {
+    "seed": 42,
+    "algo_name": "CPO",
+    "train_kwargs": {
+      "total_steps": 50000,
+      "eval_freq": 1,
+      "vector_env_nums": 1,
+      "parallel": 1
+    },
+    "algo_kwargs": {
+        "steps_per_epoch": 2048,
+        "update_iters": 1
+    },
+    "model_kwargs": {},
+    "logger_kwargs": {
+      "log_dir": "./logs",
+      "wandb_project": "safebench",
+      "use_wandb": true
+    },
+    "env_config": "scenarios/static/static_2l_1h.json",
+    "env_overrides": {
+      "flatten_observation": true,
+      "action_discrete": false,
+      "harm_obs_verb": 1,
+      "l_size": 0.2,
+      "h_size": 0.15
+    },
+    "cost_kwargs": {
+      "scale": 1.0
+    },
+    "env_time_limit": 1024,
+    "env_max_episode_steps": 1024,
+    "morality_tree_config": "asimov_3_laws.json",
+    "n_eval_episodes": 20,
+    "max_eval_steps": 1000,
+    "vis_eval_episode": true
+  }
+}

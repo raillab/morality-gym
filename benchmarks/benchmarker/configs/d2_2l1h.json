@@ -1,0 +1,87 @@
+{
+    "details": "",
+    "exp_type": "learn",
+    "seed": 42,
+
+    "learner": {
+        "algos": ["RCPO", "CPO", "PPOLag", "TRPO", "PPO"],
+        "kwargs": {
+            "common": {
+                "static": {
+                    "algo_kwargs": {},
+                    "model_kwargs": {},
+                    "train_kwargs": {
+                        "total_steps": 50000,
+                        "eval_freq": 5000,
+                        "vector_env_nums": 1,
+                        "parallel": 1,
+                        "device": "cpu"
+                    },
+                    "env_config": "scenarios/2l_1h.json",
+                    "env_overrides": {},
+                    "cost_kwargs": {
+                        "scale": 1.0
+                    },
+                    "env_time_limit": 1024,
+                    "env_max_episode_steps": 1024,
+                    "n_eval_episodes": 20,
+                    "max_eval_steps": 1000,
+                    "vis_eval_episode": true
+                },
+                "multi": {
+                    "algo_kwargs": {},
+                    "model_kwargs": {},
+                    "train_kwargs": {},
+                    "morality_tree_config": ["simple-altruism.json", "simple-self-serving.json", "med.json", "complex.json"]
+                }
+            },
+            "RCPO": {
+                "static": {
+                    "lagrange_kwargs": {
+                        "cost_limit": 0
+                    }
+                },
+                "multi": {}
+            },
+            "CPO": {
+                "static": {},
+                "multi": {}
+            },
+            "PPOLag": {
+                "static": {
+                    "lagrange_kwargs": {
+                        "cost_limit": 0
+                    }
+                },
+                "multi": {}
+            },
+            "TRPO": {
+                "static": {
+
+                },
+                "multi": {}
+            },
+            "PPO": {
+                "static": {
+                },
+                "multi": {}
+            }
+        }
+    },
+
+    "logger": {
+        "log_dir": "##OVERRIDDEN##",
+        "wandb_project": "",
+        "use_wandb": false,
+        "use_tensorboard": false
+    },
+    "cluster": {
+        "exp_name": "d2_2l1h",
+        "partition": "stampede",
+        "max_nodes": 20,
+        "runs_per_node": 2,
+        "seq_repeats_per_run": 1,
+        "par_repeats_per_run": 1,
+        "conda_env": "asimov"
+    }
+}

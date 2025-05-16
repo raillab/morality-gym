@@ -1,0 +1,7 @@
+{
+  "head": [
+    ["outcome", "HumanHarm", "Prohibit", "", []],
+    ["outcome", "RobotHarm", "Prohibit", "", []],
+    ["outcome", "PropertyHarm", "Prohibit", "", []]
+  ]
+}

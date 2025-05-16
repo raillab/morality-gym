@@ -1,0 +1,75 @@
+{
+    "details": "Test",
+    "exp_type": "learn",
+    "seed": 42,
+
+    "learner": {
+        "algos": ["CPO","PPOLag"],
+        "kwargs": {
+            "common": {
+                "static": {
+                    "algo_kwargs": {
+                        "steps_per_epoch": 2048,
+                        "update_iters": 1
+                    },
+                    "model_kwargs": {},
+                    "train_kwargs": {
+                        "total_steps": 10000,
+                        "eval_freq": 1,
+                        "vector_env_nums": 1,
+                        "parallel": 1
+                    },
+                    "env_config": "scenarios/static/static_2l_1h.json",
+                    "env_overrides": {
+                        "flatten_observation": true,
+                        "action_discrete": false,
+                        "harm_obs_verb": 1,
+                        "l_size": 0.2,
+                        "h_size": 0.15
+                    },
+                    "cost_kwargs": {
+                        "scale": 1.0
+                    },
+                    "env_time_limit": 1024,
+                    "env_max_episode_steps": 1024,
+                    "morality_tree_config": "asimov_3_laws.json",
+                    "n_eval_episodes": 20,
+                    "max_eval_steps": 1000,
+                    "vis_eval_episode": true
+                },
+                "multi": {
+                    "algo_kwargs": {},
+                    "model_kwargs": {},
+                    "train_kwargs": {}
+                }
+            },
+            "CPO": {
+                "static": {
+                },
+                "multi": {
+                }
+            },
+            "PPOLag": {
+                "static": {},
+                "multi": {
+                    "lagrange_kwargs": {}
+                }
+            }
+        }
+    },
+
+    "logger": {
+        "log_dir": "./logs",
+        "wandb_project": "safebench",
+        "use_wandb": false
+    },
+    "cluster": {
+        "exp_name": "debug",
+        "partition": "bigbatch",
+        "max_nodes": 18,
+        "runs_per_node": 2,
+        "seq_repeats_per_run": 1,
+        "par_repeats_per_run": 2,
+        "conda_env": "asimov"
+    }
+}

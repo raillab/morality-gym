@@ -1,0 +1,20 @@
+{
+  "HumanHarm": {
+    "MajorHumanHarm": {
+      "MajorHumanHarmByRobot": {},
+      "MajorHumanHarmByEnv": {}
+    },
+    "MinorHumanHarm": {
+      "MinorHumanHarmByRobot": {},
+      "MinorHumanHarmByEnv": {}
+    }
+  },
+  "PropertyHarm": {
+    "MajorPropertyHarm": {},
+    "MinorPropertyHarm": {}
+  },
+  "RobotHarmed": {
+    "MajorRobotHarm": {},
+    "MinorRobotHarm": {}
+  }
+}

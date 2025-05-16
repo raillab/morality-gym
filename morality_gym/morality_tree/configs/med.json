@@ -1,0 +1,13 @@
+{
+  "tree": [
+    ["HumanHarm", [
+      ["MajorHumanHarm", []], ["MinorHumanHarm", []]
+    ]],
+    ["RobotHarm", [
+      ["MajorRobotHarm", []], ["MinorRobotHarm", []]
+    ]],
+    ["PropertyHarm", [
+      ["MajorPropertyHarm", []], ["MinorPropertyHarm", []]
+    ]]
+  ]
+}

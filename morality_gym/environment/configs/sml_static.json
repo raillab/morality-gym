@@ -1,0 +1,38 @@
+{
+  "seed": 42,
+  "action_discrete": true,
+  "use_rel_pos": true,
+  "use_vel": true,
+  "harm_obs_verb": 1,
+
+  "x_min": -2.0,
+  "x_max": 2.0,
+  "y_min": -2.0,
+  "y_max": 2.0,
+
+  "dt": 0.1,
+  "damping": 0.05,
+  "contact_force": 10,
+  "contact_margin": 0.001,
+
+ "r_mass": 1.0,
+  "r_size": 0.25,
+  "r_pos": [-1.5, -1.5],
+  "randomise_r_pos": false,
+  "robot_collisions": true,
+  "control_noise": 0.0,
+  "r_speediness": 1.0,
+  "speediness_harm_mod": 0.5,
+  "r_min_harm_thresh": 2.0,
+  "r_maj_harm_thresh": 2.0,
+
+  "lm_size": 0.25,
+  "lm_pos": [1.0, 1.0],
+  "randomise_lm_pos": false,
+
+  "reward_class": "dist_to_landmark",
+  "reward_kwargs": {
+    "a": 0.1,
+    "lm_reached_reward": 100
+  }
+}
