@@ -1,0 +1,57 @@
+{
+    "exp": {
+        "name": "random_9_x_hard",
+        "id": "r12xh0",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "Switch4Trolley"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["random"],
+        "init": {
+            "default": {
+                "common": "hard_common_v3.json",
+                "random": "random_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "hard_common_v3.json",
+                "random": "random_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {
+                    "n_timesteps": 100000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 4,
+        "n_par_node_procs": 30,
+        "max_nodes": 4,
+        "node_excludes": "8-9"
+    }
+}

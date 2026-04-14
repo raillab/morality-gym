@@ -18,13 +18,13 @@ from __future__ import annotations
 
 import os
 import sys
-from typing import Any
+from typing import Any, Optional, Callable
 
 import torch
 
 from omnisafe.algorithms import ALGORITHM2TYPE, ALGORITHMS, registry
 from omnisafe.algorithms.base_algo import BaseAlgo
-from omnisafe.envs import support_envs
+from omnisafe.envs import ENVIRONMNET2TYPE, support_envs
 from omnisafe.evaluator import Evaluator
 from omnisafe.utils import distributed
 from omnisafe.utils.config import Config, check_all_configs, get_default_kwargs_yaml
@@ -59,10 +59,12 @@ class AlgoWrapper:
         env_id: str,
         train_terminal_cfgs: dict[str, Any] | None = None,
         custom_cfgs: dict[str, Any] | None = None,
+        # make_env_fn: Optional[Callable] = None
     ) -> None:
         """Initialize an instance of :class:`AlgoWrapper`."""
         self.algo: str = algo
         self.env_id: str = env_id
+        # self.make_env_fn: Optional[Callable] = make_env_fn
         # algo_type will set in _init_checks()
         self.train_terminal_cfgs: dict[str, Any] | None = train_terminal_cfgs
         self.custom_cfgs: dict[str, Any] | None = custom_cfgs
@@ -88,6 +90,7 @@ class AlgoWrapper:
             self.algo in ALGORITHMS['all']
         ), f"{self.algo} doesn't exist. Please choose from {ALGORITHMS['all']}."
         self.algo_type = ALGORITHM2TYPE.get(self.algo, '')
+        self.env_type = ENVIRONMNET2TYPE.get(self.env_id, '')
         if self.train_terminal_cfgs is not None:
             if self.algo_type in ['model-based', 'offline']:
                 assert (
@@ -130,11 +133,9 @@ class AlgoWrapper:
         # the exp_name format is PPO-{SafetyPointGoal1-v0}
         exp_name = f'{self.algo}-{{{self.env_id}}}'
         cfgs.recurisve_update({'exp_name': exp_name, 'env_id': self.env_id, 'algo': self.algo})
-        if hasattr(cfgs.train_cfgs, 'total_steps') and hasattr(cfgs.algo_cfgs, 'steps_per_epoch'):
-            epochs = cfgs.train_cfgs.total_steps // cfgs.algo_cfgs.steps_per_epoch
-            cfgs.train_cfgs.recurisve_update(
-                {'epochs': epochs},
-            )
+        cfgs.train_cfgs.recurisve_update(
+            {'epochs': cfgs.train_cfgs.total_steps // cfgs.algo_cfgs.steps_per_epoch},
+        )
         return cfgs
 
     def _init_checks(self) -> None:
@@ -142,13 +143,16 @@ class AlgoWrapper:
         assert isinstance(self.algo, str), 'algo must be a string!'
         assert isinstance(self.cfgs.train_cfgs.parallel, int), 'parallel must be an integer!'
         assert self.cfgs.train_cfgs.parallel > 0, 'parallel must be greater than 0!'
-        assert (
-            self.env_id in support_envs()
-        ), f"{self.env_id} doesn't exist. Please choose from {support_envs()}."
+
+        # # if self.make_env_fn is None:
+        # if "make_env_fn" not in self.cfgs:
+        #     assert (
+        #         self.env_id in support_envs()
+        #     ), f"{self.env_id} doesn't exist. Please choose from {support_envs()}."
 
     def _init_algo(self) -> None:
         """Initialize the algorithm."""
-        check_all_configs(self.cfgs, self.algo_type)
+        check_all_configs(self.cfgs, self.algo_type, self.env_type)
         if distributed.fork(
             self.cfgs.train_cfgs.parallel,
             device=self.cfgs.train_cfgs.device,
@@ -162,13 +166,11 @@ class AlgoWrapper:
                 ddp_local_rank = int(os.environ['LOCAL_RANK'])
                 self.cfgs.train_cfgs.device = f'cuda:{ddp_local_rank}'
             torch.set_num_threads(1)
-            # Bug fix - set_device takes a torch.device object not a string
-            if type(self.cfgs.train_cfgs.device) == str:
-                self.cfgs.train_cfgs.device = torch.device(self.cfgs.train_cfgs.device)
             torch.cuda.set_device(self.cfgs.train_cfgs.device)
         os.environ['OMNISAFE_DEVICE'] = self.cfgs.train_cfgs.device
         self.agent: BaseAlgo = registry.get(self.algo)(
             env_id=self.env_id,
+            # make_env_fn=self.make_env_fn,
             cfgs=self.cfgs,
         )
 

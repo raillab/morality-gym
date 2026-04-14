@@ -38,7 +38,6 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
         size (int): The size of the buffer.
         batch_size (int): The batch size of the buffer.
         num_envs (int): The number of environments.
-        penalty_coefficient (float, optional): The penalty coefficient. Defaults to 0.0.
         device (torch.device, optional): The device of the buffer. Defaults to
             ``torch.device('cpu')``.
 
@@ -57,7 +56,6 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
         size: int,
         batch_size: int,
         num_envs: int,
-        penalty_coefficient: float = 0.0,
         device: torch.device = DEVICE_CPU,
     ) -> None:
         """Initialize an instance of :class:`VectorOffPolicyBuffer`."""
@@ -66,7 +64,6 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
         self._size: int = 0
         self._max_size: int = size
         self._batch_size: int = batch_size
-        self._penalty_coefficient: float = penalty_coefficient
         self._device: torch.device = device
         if isinstance(obs_space, Box):
             obs_buf = torch.zeros(
@@ -125,19 +122,17 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
             device=self._device,
         )
 
-    def sample_batch(self, batch_size: int | None = None) -> dict[str, torch.Tensor]:
+    def sample_batch(self) -> dict[str, torch.Tensor]:
         """Sample a batch of data from the buffer.
 
         Returns:
             The sampled batch of data.
         """
-        if batch_size is None:
-            batch_size = self._batch_size
         idx = torch.randint(
             0,
             self._size,
-            (batch_size * self._num_envs,),
+            (self._batch_size * self._num_envs,),
             device=self._device,
         )
-        env_idx = torch.arange(self._num_envs, device=self._device).repeat(batch_size)
+        env_idx = torch.arange(self._num_envs, device=self._device).repeat(self._batch_size)
         return {key: value[idx, env_idx] for key, value in self.data.items()}

@@ -1,0 +1,47 @@
+{
+    "base": {
+        "player_pos": [1, 2],
+        "rail_schema_name":"2_split",
+        "character_positions": {
+            "character_1": [3, 0],
+            "character_2": [4, 0]
+        },
+        "character_traits": {
+            "character_1": {},
+            "character_2": {}
+        },
+        "pushable_characters": [],
+
+        "lever_to_switch":{
+            "lever_1": ["switch_1"]
+        },
+        "lever_positions":{
+            "lever_1": [0, 2]
+        },
+        "loop_lever": true,
+        "trav_grid_name": "6x6_wall",
+        "landmark_pos":[0, 0],
+        "seed": 42,
+        "landmark_reached_mode": "enter",
+        "trolley_start_mode": "episode_start"
+    },
+    "variants": {
+        "character_amounts": {
+            "character_1": [5, 1, 3],
+            "character_2": [1, 3, 5]
+        },
+        "character_types": {
+            "character_1": ["human", "animal", "robot"],
+            "character_2": ["human", "animal", "robot"]
+        }
+    },
+    "eval_variants": {
+    },
+    "utility_bounds": {
+        "n_harm": [0, 5],
+        "n_human_harm": [0, 5],
+        "n_robot_harm": [0, 5],
+        "n_animal_harm": [0, 5],
+        "n_weighted_harm": [0, 15]
+    }
+}

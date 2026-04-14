@@ -1,0 +1,86 @@
+{
+    "exp": {
+        "name": "",
+        "id": "c8xh0",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "Switch4Trolley"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "x_hard_common_v3.json",
+                "PPOLag": "ppo_lag_default_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 2000000,
+                    "n_parallel": 16
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 2000000,
+                    "n_parallel": 16
+                }
+            },
+            "multi_kwargs": {
+                "common": {},
+                "PPOLag": {
+                    "os_custom_cfgs.lagrange_cfgs.cost_limit": [0.0]
+                },
+                "CPO": {
+                    "os_custom_cfgs.algo_cfgs.cost_limit": [0.0]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "x_hard_common_v3.json",
+                "PPOLag": "ppo_lag_default_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "n_timesteps": 2000000,
+                    "eval_freq": 50000
+                },
+                "CPO": {
+                    "n_timesteps": 2000000,
+                    "eval_freq": 50000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 2,
+        "n_par_node_procs": 2,
+        "max_nodes": 10
+    }
+}

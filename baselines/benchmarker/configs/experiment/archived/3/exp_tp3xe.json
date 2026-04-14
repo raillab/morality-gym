@@ -1,0 +1,58 @@
+{
+    "exp": {
+        "name": "trpo_pid_3_extra_easy",
+        "id": "tp3xe",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "SwitchStandard", "PushStandard"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["TRPOPID"],
+        "init": {
+            "default": {
+                "common": "x_easy_common.json",
+                "TRPOPID": "trpo_pid_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "TRPOPID": {
+                    "n_timesteps": 100000
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common.json",
+                "TRPOPID": "trpo_pid_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "TRPOPID": {
+                    "n_timesteps": 100000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 4,
+        "n_par_node_procs": 4,
+        "max_nodes": 20
+    }
+}

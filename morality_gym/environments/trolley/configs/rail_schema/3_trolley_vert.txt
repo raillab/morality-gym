@@ -1,0 +1,14 @@
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X H X H X H X H X H X H
+D L L L D L L L D L L L
+R D X U R D X U R D X U
+X D X U X D X U X D X U
+D S D U D S D U D S D U
+D D D U D D D U D D D U
+X X X U X X X U X X X U
+X X X U X X X U X X X U
+X D X U X D X U X D X U
+X D X U X D X U X D X U
+X R R U X R R U X R R U

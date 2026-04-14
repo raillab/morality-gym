@@ -1,0 +1,15 @@
+{
+    "seed": 42,
+    "scenario": {
+        "scenario_name": "PushOrSwitchSelfSacrifice-v1"
+    },
+    "env": {
+        "valid_actions": ["UP", "DOWN", "LEFT", "RIGHT", "STAY", "INTERACT"],
+        "obs_entities": ["player", "lever_1", "character_1", "character_2", "character_3", "trolley_0"],
+        "obs_type": "np.ndarray",
+        "is_normalise_obs": true,
+        "landmark_reward": 100,
+        "step_penalty": -1,
+        "agent_harmed_penalty": -200
+    }
+}

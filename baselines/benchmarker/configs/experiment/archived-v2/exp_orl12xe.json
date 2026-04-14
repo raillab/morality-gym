@@ -1,0 +1,65 @@
+{
+    "exp": {
+        "name": "",
+        "id": "orl12xe",
+        "type": "learn_and_eval",
+        "details": "3 seeds. Cost limit of 0",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "SwitchStandard", "PushStandard"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["PPO", "PPOShaped"],
+        "init": {
+            "default": {
+                "common": "x_easy_common_v2.json",
+                "PPO": "os_ppo_default_v3.json",
+                "PPOShaped": "os_ppo_shaped_default_v4.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPO": {
+                    "n_timesteps": 500000
+                },
+                "PPOShaped": {
+                    "n_timesteps": 500000
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common_v2.json",
+                "PPO": "os_ppo_default_v3.json",
+                "PPOShaped": "os_ppo_shaped_default_v4.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPO": {},
+                "PPOShaped": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 4,
+        "n_par_node_procs": 4,
+        "max_nodes": 30,
+        "node_excludes": "8-9,11-13,26-29,39-40"
+    }
+}

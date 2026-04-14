@@ -110,7 +110,7 @@ class OfflineDataCollector:
 
         model_path = os.path.join(save_dir, 'torch_save', model_name)
         try:
-            model_params = torch.load(model_path, weights_only=False)
+            model_params = torch.load(model_path)
         except FileNotFoundError as error:
             raise FileNotFoundError(f'Model {model_name} not found in {save_dir}') from error
 

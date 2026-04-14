@@ -76,7 +76,6 @@ class OffPolicyAdapter(OnlineAdapter):
             agent (ConstraintActorCritic): Agent.
             logger (Logger): Logger, to log ``EpRet``, ``EpCost``, ``EpLen``.
         """
-        assert self._eval_env, 'Environment for evaluation has not been set!'
         for _ in range(episode):
             ep_ret, ep_cost, ep_len = 0.0, 0.0, 0
             obs, _ = self._eval_env.reset()
@@ -127,7 +126,9 @@ class OffPolicyAdapter(OnlineAdapter):
         """
         for _ in range(rollout_step):
             if use_rand_action:
-                act = (torch.rand(self.action_space.shape) * 2 - 1).unsqueeze(0).to(self._device)  # type: ignore
+                act = torch.as_tensor(self._env.sample_action(), dtype=torch.float32).to(
+                    self._device,
+                )
             else:
                 act = agent.step(self._current_obs, deterministic=False)
             next_obs, reward, cost, terminated, truncated, info = self.step(act)
@@ -180,8 +181,6 @@ class OffPolicyAdapter(OnlineAdapter):
             logger (Logger): Logger, to log ``EpRet``, ``EpCost``, ``EpLen``.
             idx (int): The index of the environment.
         """
-        if hasattr(self._env, 'spec_log'):
-            self._env.spec_log(logger)
         logger.store(
             {
                 'Metrics/EpRet': self._ep_ret[idx],

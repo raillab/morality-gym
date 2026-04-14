@@ -1,0 +1,58 @@
+{
+    "exp": {
+        "name": "standard_0_easy",
+        "id": "s0e",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "Switch3", "Push2", "PushOrSwitch",
+            "SwitchSelfSacrifice", "PushSelfSacrifice"
+        ],
+        "env_mcs": null
+    },
+    "learner": {
+        "names": ["ppo", "ppo_shaped"],
+        "init": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json",
+                "ppo": "easy_ppo.json",
+                "ppo_shaped": "easy_ppo_shaped.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {},
+                "ppo": {},
+                "ppo_shaped": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json",
+                "ppo": "easy_ppo.json",
+                "ppo_shaped": "easy_ppo_shaped.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {},
+                "ppo": {},
+                "ppo_shaped": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 4,
+        "n_par_node_procs": 8,
+        "max_nodes": 20
+    }
+}

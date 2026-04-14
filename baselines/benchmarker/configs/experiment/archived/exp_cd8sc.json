@@ -1,0 +1,64 @@
+{
+    "exp": {
+        "name": "",
+        "id": "cd8sc",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": [
+            ["SwitchSanityCheck-Human-v1", "Utility"]
+        ],
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "sanity_check_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 100000,
+                    "n_parallel": 4
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "sanity_check_v2.json",
+                "PPOLag": "ppo_lag_default_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "CPO": {
+                    "n_timesteps": 100000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 10,
+        "n_par_node_procs": 4,
+        "max_nodes": 60
+    }
+}

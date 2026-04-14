@@ -1,0 +1,60 @@
+{
+    "exp": {
+        "name": "ppo_shaped_3_med_cost_fact_0",
+        "id": "ps3m0",
+        "type": "learn_and_eval",
+        "details": "Cost factor set to 5.0",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": [
+            "Switch5", "Switch2Trolley1Lever", "Switch2Trolley2Lever",
+            "Push3", "Push2OrSwitch", "Push2SelfSacrifice", "Push3SelfSacrifice",
+            "PushOrSwitchSelfSacrifice", "Push2OrSwitchSelfSacrifice"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["ppo_shaped"],
+        "init": {
+            "default": {
+                "common": "med_common.json",
+                "ppo_shaped": "ppo_shaped_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "ppo_shaped": {
+                    "cost_function_kwargs": {
+                        "scale_fact": 5.0
+                    }
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "med_common.json",
+                "ppo_shaped": "ppo_shaped_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "ppo_shaped": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 6,
+        "n_par_node_procs": 4,
+        "max_nodes": 25
+    }
+}

@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Optional, Callable
 
 import torch
 
@@ -31,7 +32,12 @@ class BaseAlgo(ABC):  # pylint: disable=too-few-public-methods
 
     _logger: Logger
 
-    def __init__(self, env_id: str, cfgs: Config) -> None:
+    def __init__(
+            self,
+            env_id: str,
+            cfgs: Config,
+            make_env_fn: Optional[Callable] = None
+    ) -> None:
         """Initialize an instance of algorithm."""
         self._env_id: str = env_id
         self._cfgs: Config = cfgs
@@ -42,6 +48,8 @@ class BaseAlgo(ABC):  # pylint: disable=too-few-public-methods
 
         assert hasattr(cfgs.train_cfgs, 'device'), 'Please specify the device in the config file.'
         self._device: torch.device = get_device(self._cfgs.train_cfgs.device)
+
+        self._make_env_fn: Optional[Callable] = make_env_fn
 
         distributed.setup_distributed()
 

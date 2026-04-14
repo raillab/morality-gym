@@ -36,10 +36,12 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
         _support_envs (list[str]): List of supported environments.
         need_auto_reset_wrapper (bool): Whether to use auto reset wrapper.
         need_time_limit_wrapper (bool): Whether to use time limit wrapper.
+        need_action_scale_wrapper (bool): Whether to use action scale wrapper.
     """
 
     need_auto_reset_wrapper = False
     need_time_limit_wrapper = False
+    need_action_scale_wrapper = True
 
     _support_envs: ClassVar[list[str]] = [
         'SafetyPointGoal0-v0-modelbased',
@@ -174,7 +176,6 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
             cost: Batch cost.
         """
         assert torch.is_tensor(obs), 'obs must be tensor'
-        assert len(obs.shape) == 2 or len(obs.shape) == 3
         hazards_key = self.key_to_slice_tensor['hazards']
         if len(obs.shape) == 2:
             batch_size = obs.shape[0]
@@ -182,11 +183,7 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
         elif len(obs.shape) == 3:
             batch_size = obs.shape[0] * obs.shape[1]
             hazard_obs = obs[:, :, hazards_key].reshape(batch_size, -1, 2)
-        else:
-            raise RuntimeError('observation size mismatch')
-        hazards_dist = torch.sqrt(
-            torch.sum(torch.square(hazard_obs), dim=2),
-        ).reshape(
+        hazards_dist = torch.sqrt(torch.sum(torch.square(hazard_obs), dim=2)).reshape(
             batch_size,
             -1,
         )
@@ -470,11 +467,6 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
 
         return obs, reward, cost, terminated, truncated, info
 
-    @property
-    def max_episode_steps(self) -> int:
-        """The max steps per episode."""
-        return self._env.env.spec.max_episode_steps
-
     def reset(
         self,
         seed: int | None = None,
@@ -504,7 +496,7 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
             info['goal_met'] = False
 
             obs = torch.as_tensor(flat_coordinate_obs, dtype=torch.float32, device=self._device)
-        return obs, info  # pylint: disable=possibly-used-before-assignment
+        return obs, info
 
     def set_seed(self, seed: int) -> None:
         """Set the seed for the environment.
@@ -513,6 +505,18 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
             seed (int): Seed to set.
         """
         self.reset(seed=seed)
+
+    def sample_action(self) -> torch.Tensor:
+        """Sample a random action.
+
+        Returns:
+            The sampled action.
+        """
+        return torch.as_tensor(
+            self._env.action_space.sample(),
+            dtype=torch.float32,
+            device=self._device,
+        )
 
     def render(self) -> Any:
         """Render the environment.

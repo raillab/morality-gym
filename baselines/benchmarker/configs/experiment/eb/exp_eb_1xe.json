@@ -1,0 +1,59 @@
+{
+    "exp": {
+        "name": "eval_bounds_easy",
+        "id": "eb1xe",
+        "type": "eval_bounds",
+        "details": "",
+        "seeds": [42]
+    },
+    "env": {
+        "base_envs": [
+            "SwitchStandard", "PushStandard"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            },
+            "env_overrides": {
+                "scenario_overrides": {
+                    "max_timesteps": 20
+                }
+            }
+        }
+    },
+    "learner": {
+        "names": ["eval_bounds"],
+        "init": {
+            "default": {
+                "common": "easy_common.json",
+                "eval_bounds": "eval_bounds.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "eval_bounds": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common.json",
+                "eval_bounds": "eval_bounds.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "eval_bounds": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 1,
+        "n_par_node_procs": 30,
+        "max_nodes": 20
+    }
+}

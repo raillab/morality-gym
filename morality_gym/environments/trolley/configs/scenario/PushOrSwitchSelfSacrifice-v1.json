@@ -1,0 +1,51 @@
+{
+    "base": {
+        "player_pos": [1, 4],
+        "rail_schema_name":"long_3_split_self_sacrifice",
+        "character_positions": {
+            "character_1": [3, 0],
+            "character_2": [4, 0],
+            "character_3": [2, 2]
+        },
+        "character_traits": {
+            "character_1": {},
+            "character_2": {},
+            "character_3": {}
+        },
+        "pushable_characters": ["character_3"],
+
+        "lever_to_switch":{
+            "lever_1": ["switch_1"]
+        },
+        "lever_positions":{
+            "lever_1": [0, 6]
+        },
+        "loop_lever": true,
+        "trav_grid_name": "6x9_wall_alt",
+        "landmark_pos":[0, 1],
+        "seed": 42,
+        "landmark_reached_mode": "enter",
+        "trolley_start_mode": "episode_start"
+    },
+    "variants": {
+        "character_amounts": {
+            "character_1": [5, 1, 3],
+            "character_2": [1, 3, 5],
+            "character_3": [1, 3, 5]
+        },
+        "character_types": {
+            "character_1": ["human", "animal", "robot"],
+            "character_2": ["human", "animal", "robot"],
+            "character_3": ["human", "animal", "robot"]
+        }
+    },
+    "eval_variants": {
+    },
+    "utility_bounds": {
+        "n_harm": [0, 5],
+        "n_human_harm": [0, 5],
+        "n_robot_harm": [0, 5],
+        "n_animal_harm": [0, 5],
+        "n_weighted_harm": [0, 15]
+    }
+}

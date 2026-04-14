@@ -1,0 +1,6 @@
+{
+    "switches": {
+        "switch_1": [[4, 3], ["L", "U", "D"]]
+    },
+    "trolley_starts": [[4, 5]]
+}

@@ -1,0 +1,95 @@
+{
+    "exp": {
+        "name": "cpo_4_extra_easy",
+        "id": "c4xehp1",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": [
+            ["SwitchStandard-Human51-v1", "Utility"],
+            ["SwitchStandard-Human54-v1", "Utility"],
+            ["SwitchStandard-Animal51-v1", "Utility"],
+            ["SwitchStandard-Robot51-v1", "Utility"],
+            ["SwitchStandard-Human1Animal1-v1", "Utility"],
+            ["SwitchStandard-Human1Robot1-v1", "Utility"]
+        ],
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "x_easy_common.json",
+                "CPO": "cpo_default.json"
+            },
+            "static_kwargs": {
+                "common": {
+                    "n_timesteps": 500000
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "scale_fact": 1.0,
+                        "information_mode": "minimal"
+                    },
+                    "torch_threads": 8,
+                    "os_custom_cfgs": {
+                        "algo_cfgs": {
+                            "cost_limit": 0.0,
+                            "steps_per_epoch": 2048,
+                            "batch_size": 64
+                        },
+                        "model_cfgs": {
+                            "linear_lr_decay": false,
+                            "actor": {
+                                "lr": 0.0003
+                            },
+                            "critic": {
+                                "lr": 0.0003
+                            }
+                        }
+                    }
+                }
+            },
+            "multi_kwargs": {
+                "common": {
+
+                },
+                "CPO": {
+                    "os_custom_cfgs.algo_cfgs.entropy_coef": [0.0, 0.01, 0.1, 0.2]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common.json",
+                "CPO": "cpo_default.json"
+            },
+            "static_kwargs": {
+                "common": {
+                    "n_timesteps": 500000,
+                    "eval_freq": 25000
+                },
+                "CPO": {
+
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 2,
+        "n_par_node_procs": 4,
+        "max_nodes": 25
+    }
+}

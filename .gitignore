@@ -154,18 +154,60 @@ cython_debug/
 
 .idea/
 
-benchmarks/outputs/*
-benchmarks/runs/*
-
-**/wandb/*
-**/logs/*
-
-benchmarks/benchmarker/logs_path.ini
-**/runs/*
-!**/runs/example/
-
-**/slurms
-
-benchmarks/notebooks/figs
+!/morality_gym/environment/env
 
 !**/placeholder.txt
+
+**/event_graphs/**
+
+**/.tmp.*/
+**/tmp/*
+
+**/.ipynb_checkpoints/*
+# Logs are big - should be shared a different way
+**/*.csv
+experiments/fsrl/logs/
+
+
+**/notebooks/**/*.png
+
+**/examples/**/*.png
+
+experiments/benchmarker/paths.json
+
+experiments/baselines/notebooks/results
+
+# Additional exclusions for training logs and other large directories
+training_sweep_logs_*/
+morality_eval_logs/
+runs/
+wandb/
+baselines/**logs**
+
+baselines*/benchmarker/cluster/paths.json
+baselines*/benchmarker/paths.json
+#baselines*/benchmarker/cluster/runs/
+#baselines*/benchmarker/cluster/logs/
+#baselines*/benchmarker/cluster/slurms/
+
+baselines/data/
+
+**/logs/
+**/run_logs/
+**/slurm_logs/
+**/job_logs/
+**/jobs/
+**/runs/
+**/slurms/
+**/zipped_logs/
+
+**/StartJupyter.bat
+baselines/data_proc/notebooks
+
+omnisafe_sid/
+
+baselines/algorithms/morl/*
+
+# OS-specific files
+.DS_Store
+Thumbs.db

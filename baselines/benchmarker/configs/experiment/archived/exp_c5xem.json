@@ -1,0 +1,63 @@
+{
+    "exp": {
+        "name": "cpo_5_extra_easy",
+        "id": "c5xem",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": [
+            "SwitchStandard", "PushStandard"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "x_easy_common_v1.json",
+                "CPO": "cpo_default_v1.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 500000
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common.json",
+                "CPO": "cpo_default.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "CPO": {
+
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 8,
+        "n_par_node_procs": 4,
+        "max_nodes": 20
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "exp": {
+        "name": "cpo_3_sanity_check",
+        "id": "c3sc",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [42]
+    },
+    "env": {
+        "base_envs": [
+            "SwitchSanityCheck"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "x_easy_common.json",
+                "CPO": "cpo_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "CPO": {
+                    "n_timesteps": 100000,
+                    "cost_function_kwargs": {
+                        "scale_fact": 1.0
+                    },
+                    "os_custom_cfgs": {
+                        "algo_cfgs": {
+                            "steps_per_epoch": 5000,
+                            "update_iters": 10,
+                            "batch_size": 64,
+                            "cost_limit": 0.1
+                        },
+                        "model_cfgs": {
+                            "actor_type": "discrete"
+                        }
+                    }
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common.json",
+                "CPO": "cpo_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "CPO": {
+                    "n_timesteps": 100000,
+                    "eval_freq": 10000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 8,
+        "n_par_node_procs": 4,
+        "max_nodes": 20
+    }
+}

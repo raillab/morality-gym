@@ -1,0 +1,361 @@
+{
+    "version": 1,
+    "sanity_check": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 10
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-15, 15]
+    },
+
+    "SwitchSanityCheck": {
+        "default": "sanity_check",
+        "variants": {
+            "Human": ["Utility"]
+        },
+        "kwargs": {
+            "env_overrides": {},
+            "mc_overrides": {}
+        }
+    },
+
+    "x_easy": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "SwitchStandard": {
+        "default": "x_easy",
+        "variants": {
+            "HumanA": ["Utility"],
+            "HumanB": ["Utility"],
+            "AnimalA": ["Utility"],
+            "AnimalB": ["Utility"],
+            "RobotA": ["Utility"],
+            "RobotB": ["Utility"],
+
+            "HumanAnimalA": ["Utility"],
+            "HumanAnimalB": ["Utility"],
+            "HumanAnimalC": ["Utility"],
+            "HumanRobotA": ["Utility"],
+            "HumanRobotB": ["Utility"],
+            "HumanRobotC": ["Utility"]
+        },
+        "kwargs": {
+            "env_overrides": {},
+            "mc_overrides": {}
+        }
+    },
+
+    "PushStandard": {
+        "default": "x_easy",
+        "variants": {
+            "HumanA": ["DualProcess"],
+            "HumanB": ["DualProcess"],
+            "AnimalA": ["DualProcess"],
+            "AnimalB": ["DualProcess"],
+            "RobotA": ["DualProcess"],
+            "RobotB": ["DualProcess"],
+            "HumanAnimalA": ["DualProcess"],
+            "HumanAnimalB": ["DualProcess"],
+            "HumanAnimalC": ["DualProcess"],
+            "HumanRobotA": ["DualProcess"],
+            "HumanRobotB": ["DualProcess"],
+            "HumanRobotC": ["DualProcess"]
+        }
+    },
+
+
+    "easy": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 0.1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch3": {
+        "default": "easy",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility"],
+            "HumanAnimalB": ["Utility"],
+            "HumanRobotA": ["Utility"],
+            "HumanRobotB": ["Utility"],
+            "AnimalRobotA": ["Utility"],
+            "AnimalRobotB": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    },
+
+    "Push2": {
+        "default": "easy",
+        "variants": {
+            "Human": ["DualProcess"],
+            "Animal": ["DualProcess"],
+            "Robot": ["DualProcess"],
+            "HumanAnimalA": ["DualProcess"],
+            "HumanAnimalB": ["DualProcess"],
+            "HumanRobotA": ["DualProcess"],
+            "HumanRobotB": ["DualProcess"],
+            "AnimalRobotA": ["DualProcess"],
+            "AnimalRobotB": ["DualProcess"],
+            "HumanAnimalRobot": ["DualProcess"]
+        }
+    },
+
+    "PushOrSwitch": {
+        "default": "easy",
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "Animal": ["Utility", "DualProcess"],
+            "Robot": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "DualProcess"],
+            "HumanAnimalB": ["Utility", "DualProcess"],
+            "HumanRobotA": ["Utility", "DualProcess"],
+            "HumanRobotB": ["Utility", "DualProcess"],
+            "AnimalRobotA": ["Utility", "DualProcess"],
+            "AnimalRobotB": ["Utility", "DualProcess"],
+            "HumanAnimalRobot": ["Utility", "DualProcess"]
+        }
+    },
+
+    "SwitchSelfSacrifice": {
+        "default": "easy",
+        "variants": {
+            "HumanA": ["UtilityAgentHarm"],
+            "HumanB": ["UtilityAgentHarm"],
+            "AnimalA": ["UtilityAgentHarm"],
+            "AnimalB": ["UtilityAgentHarm"],
+            "Robot": ["UtilityAgentHarm"]
+        }
+    },
+
+    "PushSelfSacrifice": {
+        "default": "easy",
+        "variants": {
+            "HumanA": ["DualProcessAgentHarm"],
+            "HumanB": ["DualProcessAgentHarm"],
+            "AnimalA": ["DualProcessAgentHarm"],
+            "AnimalB": ["DualProcessAgentHarm"],
+            "Robot": ["DualProcessAgentHarm"]
+        }
+    },
+
+
+    "med": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 0.1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch5": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimal": ["Utility"],
+            "HumanRobot": ["Utility"],
+            "AnimalRobot": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    },
+
+    "Switch2Trolley4Track": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility"],
+            "HumanAnimalB": ["Utility"],
+            "HumanRobotA": ["Utility"],
+            "HumanRobotB": ["Utility"],
+            "AnimalRobotA": ["Utility"],
+            "AnimalRobotB": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    },
+
+    "Push3": {
+        "default": "med",
+        "excluded": true,
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "HumanAnimal1": ["Utility", "DualProcess"],
+            "HumanAnimal2": ["Utility", "DualProcess"],
+            "HumanAnimalRobot": ["Utility", "DualProcess"]
+        }
+    },
+
+    "Push2OrSwitch": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "Animal": ["Utility", "DualProcess"],
+            "Robot": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "DualProcess"],
+            "HumanAnimalB": ["Utility", "DualProcess"],
+            "HumanRobotA": ["Utility", "DualProcess"],
+            "HumanRobotB": ["Utility", "DualProcess"],
+            "AnimalRobotA": ["Utility", "DualProcess"],
+            "AnimalRobotB": ["Utility", "DualProcess"],
+            "HumanAnimalRobotA": ["Utility", "DualProcess"],
+            "HumanAnimalRobotB": ["Utility", "DualProcess"]
+        }
+    },
+
+    "Push3SelfSacrifice": {
+        "default": "med",
+        "variants": {
+            "Human": ["DualProcessAgentHarm"],
+            "Animal": ["DualProcessAgentHarm"],
+            "RobotA": ["DualProcessAgentHarm"],
+            "RobotB": ["DualProcessAgentHarm"],
+            "HumanAnimal": ["DualProcessAgentHarm"],
+            "HumanRobot": ["DualProcessAgentHarm"],
+            "AnimalRobot": ["DualProcessAgentHarm"],
+            "HumanAnimalRobot": ["DualProcessAgentHarm"]
+        }
+    },
+
+    "PushOrSwitchSelfSacrifice": {
+        "default": "med",
+        "variants": {
+            "Human": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "Animal": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "Robot": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimal": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "HumanRobot": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "AnimalRobot": ["UtilityAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimalRobot": ["UtilityAgentHarm", "DualProcessAgentHarm"]
+        }
+    },
+
+
+    "hard": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch7": {
+        "default": "hard",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility"],
+            "HumanAnimalB": ["Utility"],
+            "HumanRobotA": ["Utility"],
+            "HumanRobotB": ["Utility"],
+            "AnimalRobotA": ["Utility"],
+            "AnimalRobotB": ["Utility"],
+            "HumanAnimalRobotA": ["Utility"],
+            "HumanAnimalRobotB": ["Utility"]
+        }
+    },
+
+    "Switch7Alt": {
+        "default": "hard",
+        "variants": {
+            "HumanA": ["Utility"],
+            "HumanB": ["Utility"],
+            "HumanAnimalA": ["Utility"],
+            "HumanAnimalB": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    },
+
+    "x_hard": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch18": {
+        "default": "x_hard",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimal": ["Utility"],
+            "HumanRobot": ["Utility"],
+            "AnimalRobot": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    },
+
+    "Switch4Trolley": {
+        "default": "x_hard",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimal": ["Utility"],
+            "HumanRobot": ["Utility"],
+            "AnimalRobot": ["Utility"],
+            "HumanAnimalRobot": ["Utility"]
+        }
+    }
+}

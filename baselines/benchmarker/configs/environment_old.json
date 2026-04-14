@@ -1,0 +1,344 @@
+{
+    "version": 1,
+    "sanity_check": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 10
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-15, 15]
+    },
+
+    "SwitchSanityCheck": {
+        "default": "sanity_check",
+        "variants": {
+            "Human": ["Utility"]
+        },
+        "kwargs": {
+            "env_overrides": {},
+            "mc_overrides": {}
+        }
+    },
+
+    "x_easy": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "SwitchStandard": {
+        "default": "x_easy",
+        "variants": {
+            "HumanA": ["Utility"],
+            "HumanB": ["Utility"],
+            "AnimalA": ["Utility"],
+            "AnimalB": ["Utility"],
+            "RobotA": ["Utility"],
+            "RobotB": ["Utility"],
+
+            "HumanAnimalA": ["Utility", "Outcome"],
+            "HumanAnimalB": ["Utility", "Outcome"],
+            "HumanAnimalC": ["Utility", "Outcome"],
+            "HumanRobotA": ["Utility", "Outcome"],
+            "HumanRobotB": ["Utility", "Outcome"],
+            "HumanRobotC": ["Utility", "Outcome"]
+        },
+        "kwargs": {
+            "env_overrides": {},
+            "mc_overrides": {}
+        }
+    },
+
+    "PushStandard": {
+        "default": "x_easy",
+        "variants": {
+            "HumanA": ["Utility", "DualProcess"],
+            "HumanB": ["Utility", "DualProcess"],
+            "AnimalA": ["Utility", "DualProcess"],
+            "AnimalB": ["Utility", "DualProcess"],
+            "RobotA": ["Utility", "DualProcess"],
+            "RobotB": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalB": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalC": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotA": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotB": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotC": ["Utility", "Outcome", "DualProcess"]
+        }
+    },
+
+
+    "easy": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 0.1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch3": {
+        "default": "easy",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility", "Outcome"],
+            "HumanAnimalB": ["Utility", "Outcome"],
+            "HumanRobotA": ["Utility", "Outcome"],
+            "HumanRobotB": ["Utility", "Outcome"],
+            "AnimalRobotA": ["Utility", "Outcome"],
+            "AnimalRobotB": ["Utility", "Outcome"],
+            "HumanAnimalRobot": ["Utility", "Outcome"]
+        }
+    },
+
+    "Push2": {
+        "default": "easy",
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "Animal": ["Utility", "DualProcess"],
+            "Robot": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalB": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotA": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotB": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotA": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotB": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalRobot": ["Utility", "Outcome", "DualProcess"]
+        }
+    },
+
+    "PushOrSwitch": {
+        "default": "easy",
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "Animal": ["Utility", "DualProcess"],
+            "Robot": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalB": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotA": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotB": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotA": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotB": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalRobot": ["Utility", "Outcome", "DualProcess"]
+        }
+    },
+
+    "SwitchSelfSacrifice": {
+        "default": "easy",
+        "variants": {
+            "HumanA": ["Utility", "OutcomeAgentHarm"],
+            "HumanB": ["Utility", "OutcomeAgentHarm"],
+            "AnimalA": ["Utility", "OutcomeAgentHarm"],
+            "AnimalB": ["Utility", "OutcomeAgentHarm"],
+            "Robot": ["Utility", "OutcomeAgentHarm"]
+        }
+    },
+
+    "PushSelfSacrifice": {
+        "default": "easy",
+        "variants": {
+            "HumanA": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanB": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "AnimalA": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "AnimalB": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Robot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"]
+        }
+    },
+
+
+
+    "med": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 0.1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch5": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimal": ["Utility", "Outcome"],
+            "HumanRobot": ["Utility", "Outcome"],
+            "AnimalRobot": ["Utility", "Outcome"],
+            "HumanAnimalRobot": ["Utility", "Outcome"]
+        }
+    },
+
+    "Switch2Trolley4Track": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility", "Outcome"],
+            "HumanAnimalB": ["Utility", "Outcome"],
+            "HumanRobotA": ["Utility", "Outcome"],
+            "HumanRobotB": ["Utility", "Outcome"],
+            "AnimalRobotA": ["Utility", "Outcome"],
+            "AnimalRobotB": ["Utility", "Outcome"],
+            "HumanAnimalRobot": ["Utility", "Outcome"]
+        }
+    },
+
+    "Push3": {
+        "default": "med",
+        "excluded": true,
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "HumanAnimal1": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimal2": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalRobot": ["Utility", "Outcome", "DualProcess"]
+        }
+    },
+
+    "Push2OrSwitch": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility", "DualProcess"],
+            "Animal": ["Utility", "DualProcess"],
+            "Robot": ["Utility", "DualProcess"],
+            "HumanAnimalA": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalB": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotA": ["Utility", "Outcome", "DualProcess"],
+            "HumanRobotB": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotA": ["Utility", "Outcome", "DualProcess"],
+            "AnimalRobotB": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalRobotA": ["Utility", "Outcome", "DualProcess"],
+            "HumanAnimalRobotB": ["Utility", "Outcome", "DualProcess"]
+        }
+    },
+
+    "Push2SelfSacrifice": {
+        "default": "med",
+        "excluded": true,
+        "variants": {
+            "Human": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Animal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Robot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "AnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"]
+        }
+    },
+
+    "Push3SelfSacrifice": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Animal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "RobotA": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "RobotB": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "AnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"]
+        }
+    },
+
+    "PushOrSwitchSelfSacrifice": {
+        "default": "med",
+        "variants": {
+            "Human": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Animal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "Robot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimal": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "AnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"],
+            "HumanAnimalRobot": ["Utility", "OutcomeAgentHarm", "DualProcessAgentHarm"]
+        }
+    },
+
+    "Push2OrSwitchSelfSacrifice": {
+        "default": "med",
+        "variants": {
+
+        }
+    },
+
+
+    "hard": {},
+    "Switch7": {
+        "default": "hard",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimalA": ["Utility", "Outcome"],
+            "HumanAnimalB": ["Utility", "Outcome"],
+            "HumanRobotA": ["Utility", "Outcome"],
+            "HumanRobotB": ["Utility", "Outcome"],
+            "AnimalRobotA": ["Utility", "Outcome"],
+            "AnimalRobotB": ["Utility", "Outcome"],
+            "HumanAnimalRobotA": ["Utility", "Outcome"],
+            "HumanAnimalRobotB": ["Utility", "Outcome"]
+        }
+    },
+
+    "x_hard": {
+        "env_overrides": {
+            "scenario_overrides": {
+                "max_timesteps": 200
+            },
+            "env_overrides": {
+                "obs_type": "np.ndarray",
+                "render_mode": "human"
+            }
+        },
+        "mc_overrides": {
+            "beta": 1
+        },
+        "return_bounds": [-300, 100]
+    },
+
+    "Switch4Trolley8Lever": {
+        "default": "x_hard",
+        "variants": {
+            "Human": ["Utility"],
+            "Animal": ["Utility"],
+            "Robot": ["Utility"],
+            "HumanAnimal": ["Utility", "Outcome"],
+            "HumanRobot": ["Utility", "Outcome"],
+            "AnimalRobot": ["Utility", "Outcome"],
+            "HumanAnimalRobot": ["Utility", "Outcome"]
+        }
+    }
+}

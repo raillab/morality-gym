@@ -16,7 +16,7 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Optional, Callable
 
 import torch
 from rich.progress import track
@@ -50,9 +50,10 @@ class OnPolicyAdapter(OnlineAdapter):
         num_envs: int,
         seed: int,
         cfgs: Config,
+        make_env_fn: Optional[Callable] = None
     ) -> None:
         """Initialize an instance of :class:`OnPolicyAdapter`."""
-        super().__init__(env_id, num_envs, seed, cfgs)
+        super().__init__(env_id, num_envs, seed, cfgs, make_env_fn=make_env_fn)
         self._reset_log()
 
     def rollout(  # pylint: disable=too-many-locals
@@ -82,6 +83,7 @@ class OnPolicyAdapter(OnlineAdapter):
             range(steps_per_epoch),
             description=f'Processing rollout for epoch: {logger.current_epoch}...',
         ):
+            self._step_callback()
             act, value_r, value_c, logp = agent.step(obs)
             next_obs, reward, cost, terminated, truncated, info = self.step(act)
 
@@ -103,20 +105,15 @@ class OnPolicyAdapter(OnlineAdapter):
 
             obs = next_obs
             epoch_end = step >= steps_per_epoch - 1
-            if epoch_end:
-                num_dones = int(terminated.contiguous().sum())
-                if self._env.num_envs - num_dones:
-                    logger.log(
-                        f'\nWarning: trajectory cut off when rollout by epoch\
-                            in {self._env.num_envs - num_dones} of {self._env.num_envs} environments.',
-                    )
-
             for idx, (done, time_out) in enumerate(zip(terminated, truncated)):
                 if epoch_end or done or time_out:
                     last_value_r = torch.zeros(1)
                     last_value_c = torch.zeros(1)
                     if not done:
                         if epoch_end:
+                            logger.log(
+                                f'Warning: trajectory cut off when rollout by epoch at {self._ep_len[idx]} steps.',
+                            )
                             _, last_value_r, last_value_c, _ = agent.step(obs[idx])
                         if time_out:
                             _, last_value_r, last_value_c, _ = agent.step(
@@ -134,14 +131,6 @@ class OnPolicyAdapter(OnlineAdapter):
                         self._ep_len[idx] = 0.0
 
                     buffer.finish_path(last_value_r, last_value_c, idx)
-
-            eval_freq = self._cfgs.train_cfgs.eval_freq
-            curr_epoch = int(logger.current_epoch)
-            tot_steps = curr_epoch * steps_per_epoch + step
-            max_steps = steps_per_epoch * self._cfgs.train_cfgs.epochs
-            if eval_freq > 0 and (tot_steps % eval_freq == 0 or tot_steps == 0 or tot_steps == max_steps - 1):
-                # actor =
-                self._cfgs.train_cfgs.eval_callback(agent.actor, self._eval_env, logger, curr_epoch, tot_steps)
 
     def _log_value(
         self,
@@ -171,8 +160,6 @@ class OnPolicyAdapter(OnlineAdapter):
             logger (Logger): Logger, to log ``EpRet``, ``EpCost``, ``EpLen``.
             idx (int): The index of the environment.
         """
-        if hasattr(self._env, 'spec_log'):
-            self._env.spec_log(logger)
         logger.store(
             {
                 'Metrics/EpRet': self._ep_ret[idx],

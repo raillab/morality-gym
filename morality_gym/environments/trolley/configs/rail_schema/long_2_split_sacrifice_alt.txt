@@ -1,0 +1,6 @@
+R D X X X X X X X
+U R R R R R R R R
+U X X X X X X X X
+U S L L L L L L L
+L L X X X X X X X
+X X X X X X X X X

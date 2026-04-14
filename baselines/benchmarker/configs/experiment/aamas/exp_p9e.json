@@ -1,0 +1,58 @@
+{
+    "exp": {
+        "name": "",
+        "id": "p9e",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "PushOrSwitch", "SwitchSelfSacrifice", "PushSelfSacrifice"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["ppo"],
+        "init": {
+            "default": {
+                "common": "easy_common_v3.json",
+                "ppo": "ppo_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "ppo": {
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common_v3.json",
+                "ppo": "ppo_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "ppo": {
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "bigbatch",
+        "n_seq_procs": 8,
+        "n_par_node_procs": 3,
+        "max_nodes": 20,
+        "node_excludes": "8-9,11-13"
+    }
+}

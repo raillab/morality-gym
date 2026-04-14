@@ -1,0 +1,71 @@
+{
+    "exp": {
+        "name": "",
+        "id": "c8d4b",
+        "type": "learn_and_eval",
+        "details": "3 seeds. Cost limit of 0",
+        "seeds": [41, 42, 43, 44]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": [
+            ["Switch4Trolley-Human-v1", "Utility"]
+        ],
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["CPO"],
+        "init": {
+            "default": {
+                "common": "x_hard_common_v3.json",
+                "CPO": "cpo_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_torch_threads": 7,
+                    "n_vec_env": 8,
+                    "n_timesteps": 100000
+                }
+            },
+            "multi_kwargs": {
+                "common": {},
+                "CPO": {
+                    "os_custom_cfgs.algo_cfgs.cost_limit": [0.0]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "med_common_v3.json",
+                "CPO": "cpo_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "CPO": {
+                    "n_timesteps": 100000,
+                    "eval_freq": 50000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 1,
+        "n_par_node_procs": 4,
+        "max_nodes": 5
+    }
+}

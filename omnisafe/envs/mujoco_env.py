@@ -33,12 +33,15 @@ class MujocoEnv(CMDP):
     Attributes:
         need_auto_reset_wrapper (bool): Whether to use auto reset wrapper.
         need_time_limit_wrapper (bool): Whether to use time limit wrapper.
+        need_action_repeat_wrapper (bool): Whether to use action repeat wrapper.
+        need_action_scale_wrapper (bool): Whether to use action scale wrapper.
     """
 
     need_auto_reset_wrapper = True
-
     need_time_limit_wrapper = False
     need_action_repeat_wrapper = True
+    need_action_scale_wrapper = True
+
     _support_envs: ClassVar[list[str]] = [
         'Ant-v4',
         'Hopper-v4',
@@ -142,11 +145,6 @@ class MujocoEnv(CMDP):
 
         return obs, reward, cost, terminated, truncated, info
 
-    @property
-    def max_episode_steps(self) -> int:
-        """The max steps per episode."""
-        return self._env.spec.max_episode_steps  # type: ignore
-
     def reset(
         self,
         seed: int | None = None,
@@ -172,6 +170,18 @@ class MujocoEnv(CMDP):
             seed (int): Seed to set.
         """
         self.reset(seed=seed)
+
+    def sample_action(self) -> torch.Tensor:
+        """Sample a random action.
+
+        Returns:
+            A random action.
+        """
+        return torch.as_tensor(
+            self._env.action_space.sample(),
+            dtype=torch.float32,
+            device=self._device,
+        )
 
     def render(self) -> Any:
         """Render the environment.

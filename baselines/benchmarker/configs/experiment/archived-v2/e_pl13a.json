@@ -1,0 +1,71 @@
+{
+    "exp": {
+        "name": "",
+        "id": "e_pl13a",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "Switch7Alt"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["PPOLag"],
+        "init": {
+            "default": {
+                "common": "hard_common_v3.json",
+                "PPOLag": "ppo_lag_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "cost_function_kwargs": {
+                        "information_mode": "full"
+                    },
+                    "n_timesteps": 500000
+                }
+            },
+            "multi_kwargs": {
+                "common": {},
+                "PPOLag": {
+                    "cost_function_kwargs.scalarisation": ["linear", "expert"],
+                    "os_custom_cfgs.lagrange_cfgs.cost_limit": [0.0, 0.01, 0.05, 0.1, 0.2, 0.3, 0.5]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "hard_common_v3.json",
+                "PPOLag": "ppo_lag_default_v3.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "n_timesteps": 500000,
+                    "eval_freq": 24000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 6,
+        "n_par_node_procs": 4,
+        "max_nodes": 10,
+        "node_excludes": "8-9,11-13,26-29,39-40"
+    }
+}

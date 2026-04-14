@@ -1,0 +1,80 @@
+{
+    "exp": {
+        "name": "",
+        "id": "cpl7emcl",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": [
+            "Switch3", "Push2", "PushOrSwitch",
+            "SwitchSelfSacrifice", "PushSelfSacrifice"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["PPOLag", "CPO"],
+        "init": {
+            "default": {
+                "common": "easy_common_v2.json",
+                "PPOLag": "ppo_lag_default_v1.json",
+                "CPO": "cpo_default_v1.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 500000,
+                    "torch_threads": 10
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 500000,
+                    "torch_threads": 10
+                }
+            },
+            "multi_kwargs": {
+                "common": {},
+                "PPOLag": {
+                    "os_custom_cfgs.lagrange_cfgs.cost_limit": [0.0, 0.1]
+                },
+                "CPO": {
+                    "os_custom_cfgs.algo_cfgs.cost_limit": [0.0, 0.1]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common_v2.json",
+                "PPOLag": "ppo_lag_default_v1.json",
+                "CPO": "cpo_default_v1.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "PPOLag": {},
+                "CPO": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 10,
+        "n_par_node_procs": 4,
+        "max_nodes": 60
+    }
+}

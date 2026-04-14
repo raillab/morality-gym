@@ -1,0 +1,20 @@
+{
+    "init": {
+        "learn_mm_kwargs": {
+            "n_repeats": 10,
+            "handle_trunc": "include"
+        },
+        "final_mm_kwargs": {
+            "n_repeats": 100,
+            "handle_trunc": "include"
+        },
+        "vis_episode_kwargs": {
+            "max_steps": 50
+        }
+    },
+    "learn": {
+        "n_timesteps": 2000000,
+        "eval_freq": 50000,
+        "vis_eval_episodes": true
+    }
+}

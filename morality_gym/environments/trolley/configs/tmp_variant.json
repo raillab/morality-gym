@@ -1,0 +1,554 @@
+{
+    "HumanRobotA": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "animal",
+                "amount": 14
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 15
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 10
+            },
+            "character_4": {
+                "character_type": "human",
+                "amount": 17
+            },
+            "character_5": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_6": {
+                "character_type": "human",
+                "amount": 11
+            },
+            "character_7": {
+                "character_type": "animal",
+                "amount": 2
+            },
+            "character_8": {
+                "character_type": "human",
+                "amount": 7
+            },
+            "character_9": {
+                "character_type": "animal",
+                "amount": 17
+            },
+            "character_10": {
+                "character_type": "animal",
+                "amount": 7
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 6
+            },
+            "character_12": {
+                "character_type": "animal",
+                "amount": 3
+            },
+            "character_13": {
+                "character_type": "human",
+                "amount": 16
+            },
+            "character_15": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_16": {
+                "character_type": "animal",
+                "amount": 11
+            },
+            "character_17": {
+                "character_type": "human",
+                "amount": 8
+            },
+            "character_18": {
+                "character_type": "animal",
+                "amount": 13
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                17
+            ]
+        }
+    },
+    "HumanRobotB": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "human",
+                "amount": 17
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 6
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "human",
+                "amount": 4
+            },
+            "character_5": {
+                "character_type": "animal",
+                "amount": 14
+            },
+            "character_6": {
+                "character_type": "animal",
+                "amount": 4
+            },
+            "character_7": {
+                "character_type": "human",
+                "amount": 14
+            },
+            "character_8": {
+                "character_type": "human",
+                "amount": 13
+            },
+            "character_9": {
+                "character_type": "human",
+                "amount": 8
+            },
+            "character_10": {
+                "character_type": "human",
+                "amount": 9
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 16
+            },
+            "character_12": {
+                "character_type": "human",
+                "amount": 3
+            },
+            "character_13": {
+                "character_type": "animal",
+                "amount": 13
+            },
+            "character_15": {
+                "character_type": "animal",
+                "amount": 7
+            },
+            "character_16": {
+                "character_type": "human",
+                "amount": 7
+            },
+            "character_17": {
+                "character_type": "animal",
+                "amount": 17
+            },
+            "character_18": {
+                "character_type": "animal",
+                "amount": 10
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                17
+            ]
+        }
+    },
+    "HumanRobotC": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "animal",
+                "amount": 11
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 10
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 9
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_5": {
+                "character_type": "human",
+                "amount": 17
+            },
+            "character_6": {
+                "character_type": "animal",
+                "amount": 7
+            },
+            "character_7": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_8": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_9": {
+                "character_type": "animal",
+                "amount": 17
+            },
+            "character_10": {
+                "character_type": "animal",
+                "amount": 16
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 2
+            },
+            "character_12": {
+                "character_type": "animal",
+                "amount": 2
+            },
+            "character_13": {
+                "character_type": "human",
+                "amount": 7
+            },
+            "character_15": {
+                "character_type": "animal",
+                "amount": 14
+            },
+            "character_16": {
+                "character_type": "human",
+                "amount": 15
+            },
+            "character_17": {
+                "character_type": "human",
+                "amount": 8
+            },
+            "character_18": {
+                "character_type": "human",
+                "amount": 14
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                17
+            ]
+        }
+    },
+    "HumanRobotD": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 13
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 6
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 16
+            },
+            "character_5": {
+                "character_type": "human",
+                "amount": 2
+            },
+            "character_6": {
+                "character_type": "human",
+                "amount": 12
+            },
+            "character_7": {
+                "character_type": "animal",
+                "amount": 14
+            },
+            "character_8": {
+                "character_type": "animal",
+                "amount": 17
+            },
+            "character_9": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_10": {
+                "character_type": "human",
+                "amount": 11
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 4
+            },
+            "character_12": {
+                "character_type": "human",
+                "amount": 14
+            },
+            "character_13": {
+                "character_type": "human",
+                "amount": 7
+            },
+            "character_15": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_16": {
+                "character_type": "animal",
+                "amount": 12
+            },
+            "character_17": {
+                "character_type": "human",
+                "amount": 16
+            },
+            "character_18": {
+                "character_type": "animal",
+                "amount": 9
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                17
+            ]
+        }
+    },
+    "HumanRobotE": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "human",
+                "amount": 4
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 9
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 2
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 10
+            },
+            "character_5": {
+                "character_type": "animal",
+                "amount": 8
+            },
+            "character_6": {
+                "character_type": "human",
+                "amount": 12
+            },
+            "character_7": {
+                "character_type": "human",
+                "amount": 3
+            },
+            "character_8": {
+                "character_type": "animal",
+                "amount": 16
+            },
+            "character_9": {
+                "character_type": "human",
+                "amount": 13
+            },
+            "character_10": {
+                "character_type": "animal",
+                "amount": 3
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 14
+            },
+            "character_12": {
+                "character_type": "human",
+                "amount": 7
+            },
+            "character_13": {
+                "character_type": "animal",
+                "amount": 14
+            },
+            "character_15": {
+                "character_type": "human",
+                "amount": 17
+            },
+            "character_16": {
+                "character_type": "human",
+                "amount": 15
+            },
+            "character_17": {
+                "character_type": "human",
+                "amount": 2
+            },
+            "character_18": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                16
+            ]
+        }
+    },
+    "HumanRobotF": {
+        "characters": {
+            "character_14": {
+                "character_type": "human",
+                "amount": 18
+            },
+            "character_1": {
+                "character_type": "animal",
+                "amount": 15
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 4
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 4
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 9
+            },
+            "character_5": {
+                "character_type": "human",
+                "amount": 13
+            },
+            "character_6": {
+                "character_type": "animal",
+                "amount": 12
+            },
+            "character_7": {
+                "character_type": "human",
+                "amount": 17
+            },
+            "character_8": {
+                "character_type": "animal",
+                "amount": 2
+            },
+            "character_9": {
+                "character_type": "human",
+                "amount": 6
+            },
+            "character_10": {
+                "character_type": "human",
+                "amount": 11
+            },
+            "character_11": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_12": {
+                "character_type": "animal",
+                "amount": 11
+            },
+            "character_13": {
+                "character_type": "human",
+                "amount": 9
+            },
+            "character_15": {
+                "character_type": "animal",
+                "amount": 17
+            },
+            "character_16": {
+                "character_type": "animal",
+                "amount": 7
+            },
+            "character_17": {
+                "character_type": "animal",
+                "amount": 8
+            },
+            "character_18": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm",
+            "n_animal_harm",
+            "human_harm",
+            "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [
+                0,
+                18
+            ],
+            "n_animal_harm": [
+                0,
+                17
+            ]
+        }
+    }
+}

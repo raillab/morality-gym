@@ -1,0 +1,55 @@
+{
+    "exp": {
+        "name": "random_2_easy",
+        "id": "r2e",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": [
+            "Switch3", "Push2", "PushOrSwitch",
+            "SwitchSelfSacrifice", "PushSelfSacrifice"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["random"],
+        "init": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 4,
+        "n_par_node_procs": 30,
+        "max_nodes": 4
+    }
+}

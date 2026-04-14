@@ -118,7 +118,8 @@ class Plotter:
                 smoothed_x = np.convolve(x, y, 'same') / np.convolve(z, y, 'same')
                 datum['Costs'] = smoothed_x
 
-        data_to_plot = pd.concat(data, ignore_index=True)
+        if isinstance(data, list):
+            data_to_plot = pd.concat(data, ignore_index=True)
         sns.lineplot(
             data=data_to_plot,
             x=xaxis,

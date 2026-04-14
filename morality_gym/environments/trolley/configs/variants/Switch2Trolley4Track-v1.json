@@ -1,0 +1,276 @@
+{
+    "Human": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "human",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [2, 10]
+        }
+    },
+    "Animal": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_animal_harm", "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_animal_harm": [2, 10]
+        }
+    },
+    "Robot": {
+        "characters": {
+            "character_1": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "robot",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_robot_harm": [2, 10]
+        }
+    },
+    "HumanAnimalA": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm",
+            "n_animal_harm", "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [1, 5],
+            "n_animal_harm": [1, 5]
+        }
+    },
+    "HumanAnimalB": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_4": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm",
+            "n_animal_harm", "animal_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 2],
+            "n_animal_harm": [0, 2]
+        }
+    },
+    "HumanRobotA": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm", "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [1, 5],
+            "n_robot_harm": [1, 5]
+        }
+    },
+    "HumanRobotB": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_2": {
+                "character_type": "robot",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 2],
+            "n_robot_harm": [0, 2]
+        }
+    },
+    "AnimalRobotA": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_animal_harm", "animal_harm", "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_animal_harm": [1, 5],
+            "n_robot_harm": [1, 5]
+        }
+    },
+    "AnimalRobotB": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_2": {
+                "character_type": "robot",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_animal_harm", "animal_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_animal_harm": [0, 2],
+            "n_robot_harm": [0, 2]
+        }
+    },
+    "HumanAnimalRobot": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_4": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm",
+            "n_animal_harm", "animal_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 1],
+            "n_animal_harm": [0, 2],
+            "n_robot_harm": [0, 1]
+        }
+    }
+}

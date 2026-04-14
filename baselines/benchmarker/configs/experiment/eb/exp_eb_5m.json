@@ -1,0 +1,64 @@
+{
+    "exp": {
+        "name": "eval_bounds_5_med",
+        "id": "eb5m",
+        "type": "eval_bounds",
+        "details": "",
+        "seeds": [42]
+    },
+    "env": {
+        "base_envs": [
+            "Switch5", "Switch2Trolley4Track",
+            "Push2OrSwitch", "Push3SelfSacrifice",
+            "PushOrSwitchSelfSacrifice", "Push2OrSwitchSelfSacrifice"
+
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            },
+            "env_overrides": {
+                "scenario_overrides": {
+                    "max_timesteps": 50
+                }
+            }
+        }
+    },
+    "learner": {
+        "names": ["eval_bounds"],
+        "init": {
+            "default": {
+                "common": "med_common_v1.json",
+                "eval_bounds": "eval_bounds_med_v1.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "eval_bounds": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "med_common_v1.json",
+                "eval_bounds": "eval_bounds_med_v1.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "eval_bounds": {
+                    "n_repeats": 10000
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 1,
+        "n_par_node_procs": 30,
+        "max_nodes": 20
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "exp": {
+        "name": "ppo_shaped_3_x_easy_hparam_sweep",
+        "id": "ps3xehp0",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": [
+            ["SwitchStandard-Human-v1", "Utility"],
+            ["SwitchStandard-HumanAnimal-v1", "Utility"],
+            ["PushStandard-Human-v1", "DualProcess"],
+            ["PushStandard-HumanAnimal-v1", "DualProcess"]
+        ],
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["ppo_shaped"],
+        "init": {
+            "default": {
+                "common": "x_easy_common.json",
+                "ppo_shaped": "ppo_shaped_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "ppo_shaped": {}
+            },
+            "multi_kwargs": {
+                "common": {},
+                "ppo_shaped": {
+                    "cost_function_kwargs.scale_fact": [1.0, 5.0, 10.0],
+                    "sb3_kwargs.n_steps": [1024, 2048],
+                    "sb3_kwargs.ent_coef": [0.0, 0.01, 0.1],
+                    "sb3_kwargs.learning_rate": [0.00003, 0.0003, 0.003]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "x_easy_common.json",
+                "ppo_shaped": "ppo_shaped_default.json"
+            },
+            "static_kwargs": {
+                "common": {
+                    "n_timesteps": 300000
+                },
+                "ppo_shaped": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 14,
+        "n_par_node_procs": 4,
+        "max_nodes": 26
+    }
+}

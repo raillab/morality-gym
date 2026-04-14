@@ -1,0 +1,76 @@
+{
+    "exp": {
+        "name": "",
+        "id": "cpl8e",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["PPOLag", "CPO"],
+        "init": {
+            "default": {
+                "common": "easy_common_v2.json",
+                "PPOLag": "ppo_lag_default_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 1000000
+                },
+                "CPO": {
+                    "cost_function_kwargs": {
+                        "information_mode": "minimal"
+                    },
+                    "n_timesteps": 1000000
+                }
+            },
+            "multi_kwargs": {
+                "common": {},
+                "PPOLag": {
+                    "os_custom_cfgs.lagrange_cfgs.cost_limit": [0.0, 0.1, 0.25]
+                },
+                "CPO": {
+                    "os_custom_cfgs.algo_cfgs.cost_limit": [0.0, 0.1, 0.25]
+                }
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common_v2.json",
+                "PPOLag": "ppo_lag_default_v2.json",
+                "CPO": "cpo_default_v2.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "PPOLag": {},
+                "CPO": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-os",
+        "partition": "stampede",
+        "n_seq_procs": 8,
+        "n_par_node_procs": 4,
+        "max_nodes": 60
+    }
+}

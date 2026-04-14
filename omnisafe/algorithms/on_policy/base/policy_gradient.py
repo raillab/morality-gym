@@ -66,6 +66,7 @@ class PolicyGradient(BaseAlgo):
             self._cfgs.train_cfgs.vector_env_nums,
             self._seed,
             self._cfgs,
+            make_env_fn = self._make_env_fn
         )
         assert (self._cfgs.algo_cfgs.steps_per_epoch) % (
             distributed.world_size() * self._cfgs.train_cfgs.vector_env_nums
@@ -188,18 +189,9 @@ class PolicyGradient(BaseAlgo):
         self._logger.setup_torch_saver(what_to_save)
         self._logger.torch_save()
 
-        self._logger.register_key(
-            'Metrics/EpRet',
-            window_length=self._cfgs.logger_cfgs.window_lens,
-        )
-        self._logger.register_key(
-            'Metrics/EpCost',
-            window_length=self._cfgs.logger_cfgs.window_lens,
-        )
-        self._logger.register_key(
-            'Metrics/EpLen',
-            window_length=self._cfgs.logger_cfgs.window_lens,
-        )
+        self._logger.register_key('Metrics/EpRet', window_length=50)
+        self._logger.register_key('Metrics/EpCost', window_length=50)
+        self._logger.register_key('Metrics/EpLen', window_length=50)
 
         self._logger.register_key('Train/Epoch')
         self._logger.register_key('Train/Entropy')
@@ -231,10 +223,6 @@ class PolicyGradient(BaseAlgo):
         self._logger.register_key('Time/Epoch')
         self._logger.register_key('Time/FPS')
 
-        # register environment specific keys
-        for env_spec_key in self._env.env_spec_keys:
-            self.logger.register_key(env_spec_key)
-
     def learn(self) -> tuple[float, float, float]:
         """This is main function for algorithm update.
 
@@ -251,15 +239,6 @@ class PolicyGradient(BaseAlgo):
         """
         start_time = time.time()
         self._logger.log('INFO: Start training')
-
-        # Run before training for curr_step = 0 eval
-        # Callback function that is called every epoch and passes PolicyGradient obj as param
-        # if self._cfgs.train_cfgs.eval_freq > 0:
-        #     actor = self._actor_critic.actor
-        #     eval_env = self._env._eval_env
-        #     self._cfgs.train_cfgs.eval_callback(actor, eval_env, self._logger, 0, 0)
-        #
-        # self._logger.dump_tabular()
 
         for epoch in range(self._cfgs.train_cfgs.epochs):
             epoch_time = time.time()
@@ -290,42 +269,22 @@ class PolicyGradient(BaseAlgo):
                     'Time/Total': (time.time() - start_time),
                     'Time/Epoch': (time.time() - epoch_time),
                     'Train/Epoch': epoch,
-                    'Train/LR': (
-                        0.0
-                        if self._cfgs.model_cfgs.actor.lr is None
-                        else self._actor_critic.actor_scheduler.get_last_lr()[0]
-                    ),
+                    'Train/LR': 0.0
+                    if self._cfgs.model_cfgs.actor.lr is None
+                    else self._actor_critic.actor_scheduler.get_last_lr()[0],
                 },
             )
 
             self._logger.dump_tabular()
 
             # save model to disk
-            if (epoch + 1) % self._cfgs.logger_cfgs.save_model_freq == 0 or (
-                epoch + 1
-            ) == self._cfgs.train_cfgs.epochs:
+            if (epoch + 1) % self._cfgs.logger_cfgs.save_model_freq == 0:
                 self._logger.torch_save()
-
-            # Callback function that is called every epoch and passes PolicyGradient obj as param
-            # if self._cfgs.train_cfgs.eval_freq > 0 and (epoch % self._cfgs.train_cfgs.eval_freq == 0 or
-            #                                             epoch == self._cfgs.train_cfgs.epochs - 1):  # Eval on final epoch
-            #     actor = self._actor_critic.actor
-            #     print("\n\n\n")
-            #     print("######################################")
-            #     print("Eval on epoch: ", epoch + 1, " ...")
-            #     print("######################################")
-            #     print("\n\n\n")
-            #     eval_env = self._env._eval_env
-            #     curr_step = (epoch + 1) * self._steps_per_epoch
-            #     self._cfgs.train_cfgs.eval_callback(actor, eval_env, self._logger, epoch+1, curr_step)
-
-            # self._logger.dump_tabular()
 
         ep_ret = self._logger.get_stats('Metrics/EpRet')[0]
         ep_cost = self._logger.get_stats('Metrics/EpCost')[0]
         ep_len = self._logger.get_stats('Metrics/EpLen')[0]
         self._logger.close()
-        self._env.close()
 
         return ep_ret, ep_cost, ep_len
 
@@ -597,15 +556,15 @@ class PolicyGradient(BaseAlgo):
         """
         distribution = self._actor_critic.actor(obs)
         logp_ = self._actor_critic.actor.log_prob(act)
-        std = self._actor_critic.actor.std
         ratio = torch.exp(logp_ - logp)
         loss = -(ratio * adv).mean()
         entropy = distribution.entropy().mean().item()
+        if self._cfgs.model_cfgs.actor_type == 'gaussian_learning':
+            self._logger.store({'Train/PolicyStd': self._actor_critic.actor.std})
         self._logger.store(
             {
                 'Train/Entropy': entropy,
                 'Train/PolicyRatio': ratio,
-                'Train/PolicyStd': std,
                 'Loss/Loss_pi': loss.mean().item(),
             },
         )

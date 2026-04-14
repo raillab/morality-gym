@@ -1,0 +1,36 @@
+{
+    "init": {
+        "norm_reward": true,
+        "cost_function_kwargs": {
+            "scale_fact": 1.0,
+            "information_mode": "minimal"
+        },
+        "device": "cpu",
+        "torch_threads": 10,
+
+        "log_tensorboard": true,
+        "save_model_freq": 100000000,
+
+        "deterministic_eval": false,
+
+        "os_custom_cfgs": {
+            "algo_cfgs": {
+                "cost_limit": 0.0,
+                "steps_per_epoch": 2048,
+                "batch_size": 64,
+                "entropy_coef": 0.0,
+                "obs_normalize": false
+            },
+            "model_cfgs": {
+                "linear_lr_decay": true,
+                "actor": {
+                    "lr": 0.0003
+                },
+                "critic": {
+                    "lr": 0.0003
+                }
+            }
+        }
+    },
+    "learn": {}
+}

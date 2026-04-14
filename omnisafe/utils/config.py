@@ -147,13 +147,6 @@ class Config(dict):
         """Set attribute."""
         self[name] = value
 
-    def get(self, name: str, default: Any = None) -> Any:
-        """Get attribute."""
-        try:
-            return self[name]
-        except KeyError:
-            return default
-
     def todict(self) -> dict[str, Any]:
         """Convert Config to dictionary.
 
@@ -174,31 +167,7 @@ class Config(dict):
         Returns:
             The json string of Config.
         """
-        d = self.todict()
-        return json.dumps(self.conv_to_json(d), indent=4)
-        # return json.dumps(self.todict(), indent=4)
-
-    @staticmethod
-    def conv_to_json(d):
-        # Function that ensures d is json serializable by converting all non-serializable values to their string repr
-        import json
-        # Easy way to check if json serializable, but probably inefficient
-        def is_json_serializable(x):
-            try:
-                json.dumps(x)
-                return True
-            except (TypeError, OverflowError):
-                return False
-
-        for k, v in d.items():
-            if isinstance(v, dict):
-                d[k] = Config.conv_to_json(v)
-            else:
-                if not is_json_serializable(v):
-                    d[k] = repr(v)
-                else:
-                    d[k] = v
-        return d
+        return json.dumps(self.todict(), indent=4)
 
     @staticmethod
     def dict2config(config_dict: dict[str, Any]) -> Config:
@@ -276,7 +245,7 @@ def get_default_kwargs_yaml(algo: str, env_id: str, algo_type: str) -> Config:
     print(f'Loading {algo}.yaml from {cfg_path}')
     kwargs = load_yaml(cfg_path)
     default_kwargs = kwargs['defaults']
-    env_spec_kwargs = kwargs.get(env_id)
+    env_spec_kwargs = kwargs[env_id] if env_id in kwargs else None
 
     default_kwargs = Config.dict2config(default_kwargs)
 
@@ -286,7 +255,7 @@ def get_default_kwargs_yaml(algo: str, env_id: str, algo_type: str) -> Config:
     return default_kwargs
 
 
-def check_all_configs(configs: Config, algo_type: str) -> None:
+def check_all_configs(configs: Config, algo_type: str, env_type: str) -> None:
     """Check all configs.
 
     This function is used to check the configs.
@@ -294,10 +263,50 @@ def check_all_configs(configs: Config, algo_type: str) -> None:
     Args:
         configs (Config): The configs to be checked.
         algo_type (str): The algorithm type.
+        env_type (str): The environment type
     """
     __check_algo_configs(configs.algo_cfgs, algo_type)
+    __check_env_configs(configs, env_type)
     __check_parallel_and_vectorized(configs, algo_type)
     __check_logger_configs(configs.logger_cfgs)
+
+
+def __check_env_configs(configs: Config, env_type: str) -> None:
+    """Check whether configs are aligned with the type of environment.
+
+    Args:
+        configs (Config): The model configs to be checked.
+        env_type (str): The environment type.
+    """
+    if env_type == 'discrete':
+        assert (
+            configs.model_cfgs.actor_type == 'discrete'
+        ), 'Discrete environments only support discrete actor!'
+        assert configs.algo in [
+            'NaturalPG',
+            'PolicyGradient',
+            'PPO',
+            'TRPO',
+            'RCPO',
+            'PDO',
+            'PPOLag',
+            'TRPOLag',
+            'OnCRPO',
+            'P3O',
+            'IPO',
+            'CPPOPID',
+            'TRPOPID',
+            'CPO',
+            'PCPO',
+            # Note: Below ones need test. Also, they support discrete action space but not discrete observation space
+            'TRPOSimmerPID',
+            'PPOSimmerPID'
+
+        ], f'Currently, OmniSafe does not support {configs.algo} running on discrete environments!'
+    if env_type == 'box':
+        assert (
+            configs.model_cfgs.actor_type != 'discrete'
+        ), 'Box environments do not support discrete actor!'
 
 
 def __check_parallel_and_vectorized(configs: Config, algo_type: str) -> None:
@@ -378,7 +387,7 @@ def __check_algo_configs(configs: Config, algo_type: str) -> None:
         assert isinstance(configs.max_grad_norm, float) and isinstance(
             configs.critic_norm_coef,
             float,
-        ), 'norm must be float'
+        ), 'norm must be bool'
         assert (
             isinstance(configs.gamma, float) and configs.gamma >= 0.0 and configs.gamma <= 1.0
         ), 'gamma must be float, and it values must be [0.0, 1.0]'

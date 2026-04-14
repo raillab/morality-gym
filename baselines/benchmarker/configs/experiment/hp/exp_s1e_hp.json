@@ -1,0 +1,91 @@
+{
+    "exp": {
+        "name": "standard_0_easy",
+        "id": "s1ehp1",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": null,
+        "env_mcs": [
+            ["Switch3-Standard-v1", "Utility"],
+            ["PushOrSwitch-HumanAnimalRobot-v1", "Utility"],
+            ["PushOrSwitch-HumanAnimalRobot-v1", "DualProcess"],
+            ["PushSelfSacrifice-Human-v1", "DualProcessAgentHarm"]
+        ],
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["ppo_shaped"],
+        "init": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json",
+                "ppo": "easy_ppo.json",
+                "ppo_shaped": "easy_ppo_shaped.json"
+            },
+            "static_kwargs": {
+                "common": {
+                    "sb3_kwargs": {
+                        "learning_rate": 0.0003,
+                        "n_steps": 2048,
+                        "batch_size": 64,
+                        "n_epochs": 10,
+                        "gamma": 0.99,
+                        "gae_lambda":0.95,
+                        "clip_range_vf": null,
+                        "normalise_advantage": true,
+                        "ent_coef": 0,
+                        "vf_coef": 0.5,
+                        "max_grad_norm": 0.5
+                    }
+                },
+                "random": {},
+                "ppo": {
+                    "cost_function_kwargs": {
+                        "scale_fact": 5.0
+                    }
+                },
+                "ppo_shaped": {}
+            },
+            "multi_kwargs": {
+                "common": {
+                    "sb3_kwargs.gae_lambda": [0.9, 0.95, 0.99],
+                    "sb3_kwargs.ent_coef": [0, 0.01, 0.1, 0.2]
+                },
+                "random": {},
+                "ppo": {},
+                "ppo_shaped": {}
+            }
+        },
+        "learn": {
+            "default": {
+                "common": "easy_common.json",
+                "random": "easy_random.json",
+                "ppo": "easy_ppo.json",
+                "ppo_shaped": "easy_ppo_shaped.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {},
+                "ppo": {},
+                "ppo_shaped": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 6,
+        "n_par_node_procs": 4,
+        "max_nodes": 20
+    }
+}

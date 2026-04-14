@@ -1,0 +1,56 @@
+{
+    "exp": {
+        "name": "random_3_med",
+        "id": "r3m",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43, 44, 45, 46]
+    },
+    "env": {
+        "base_envs": [
+            "Switch5", "Switch2Trolley1Lever", "Switch2Trolley2Lever",
+            "Push3", "Push2OrSwitch", "Push2SelfSacrifice", "Push3SelfSacrifice",
+            "PushOrSwitchSelfSacrifice", "Push2OrSwitchSelfSacrifice"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["random"],
+        "init": {
+            "default": {
+                "common": "med_common.json",
+                "random": "random_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {}
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "med_common.json",
+                "random": "random_default.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "random": {}
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "stampede",
+        "n_seq_procs": 9,
+        "n_par_node_procs": 30,
+        "max_nodes": 4
+    }
+}

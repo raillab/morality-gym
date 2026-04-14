@@ -21,6 +21,7 @@ import csv
 import os
 import time
 from collections import deque
+from json import JSONDecodeError
 from typing import Any, TextIO
 
 import numpy as np
@@ -124,7 +125,10 @@ class Logger:  # pylint: disable=too-many-instance-attributes
         self._current_row: dict[str, float] = {}
 
         if config is not None:
-            self.save_config(config)
+            try:
+                self.save_config(config)
+            except TypeError as e:
+                print("[WARNING] Error occurred during config save -> skipping config save")
             self._config: Config = config
 
         self._use_tensorboard: bool = use_tensorboard
@@ -137,17 +141,12 @@ class Logger:  # pylint: disable=too-many-instance-attributes
             project: str = self._config.logger_cfgs.get('wandb_project', 'omnisafe')
             name: str = f'{exp_name}-{relpath}'
             print('project', project, 'name', name)
-            wandb.init(
-                project=project,
-                name=name,
-                dir=self._log_dir,
-                config=config,
-            )
+            wandb.init(project=project, name=name, dir=self._log_dir, config=config)
             if config is not None:
-                wandb.config.update(config)  # type: ignore
+                wandb.config.update(config)
             if models is not None:
                 for model in models:
-                    wandb.watch(model)  # type: ignore
+                    wandb.watch(model)
 
     def log(self, msg: str, color: str = 'green', bold: bool = False) -> None:
         """Log the message to the console and the file.
@@ -169,8 +168,6 @@ class Logger:  # pylint: disable=too-many-instance-attributes
         """
         if self._maste_proc:
             self.log('Save with config in config.json', 'yellow', bold=True)
-
-
             with open(os.path.join(self._log_dir, 'config.json'), encoding='utf-8', mode='w') as f:
                 f.write(config.tojson())
 

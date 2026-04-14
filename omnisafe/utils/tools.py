@@ -28,6 +28,7 @@ import torch
 import torch.backends.cudnn
 import yaml
 from rich.console import Console
+from torch.version import cuda as cuda_version
 
 from omnisafe.typing import DEVICE_CPU
 
@@ -152,6 +153,15 @@ def seed_all(seed: int) -> None:
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    try:
+        torch.use_deterministic_algorithms(True)
+        torch.backends.cudnn.enabled = False
+        torch.backends.cudnn.benchmark = False
+        if cuda_version is not None and float(cuda_version) >= 10.2:
+            os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
+            os.environ['PYTHONHASHSEED'] = str(seed)
+    except AttributeError:  # pragma: no cover
+        pass
 
 
 def custom_cfgs_to_dict(key_list: str, value: Any) -> dict[str, Any]:
@@ -261,11 +271,9 @@ def recursive_check_config(
     """
     assert isinstance(config, dict), 'custom_cfgs must be a dict!'
     for key in config:
-        if key not in default_config and key not in exclude_keys:
+        if key not in default_config and key not in exclude_keys and key not in {"step_callback", "make_env_fn"}:
             raise KeyError(f'Invalid key: {key}')
-        if config[key] is None:
-            return
-        if isinstance(config[key], dict) and key != 'env_cfgs':
+        if isinstance(config[key], dict):
             recursive_check_config(config[key], default_config[key])
 
 

@@ -1,0 +1,58 @@
+{
+    "exp": {
+        "name": "",
+        "id": "ps9xh",
+        "type": "learn_and_eval",
+        "details": "",
+        "seeds": [41, 42, 43]
+    },
+    "env": {
+        "base_envs": [
+            "Switch18", "Switch4Trolley8Lever"
+        ],
+        "env_mcs": null,
+        "env_mc_overrides": {
+            "mc_overrides": {
+                "beta": 0.1
+            }
+        }
+    },
+    "learner": {
+        "names": ["ppo_shaped"],
+        "init": {
+            "default": {
+                "common": "x_hard_common_v3.json",
+                "ppo_shaped": "ppo_shaped_default_v4.json"
+            },
+            "static_kwargs": {
+                "common": {
+                },
+                "ppo_shaped": {
+                }
+            },
+            "multi_kwargs": null
+        },
+        "learn": {
+            "default": {
+                "common": "x_hard_common_v3.json",
+                "ppo_shaped": "ppo_shaped_default_v4.json"
+            },
+            "static_kwargs": {
+                "common": {},
+                "ppo_shaped": {
+                }
+            }
+        }
+    },
+    "logger": {
+        "mode": "local"
+    },
+    "cluster": {
+        "conda_env": "asimov-new",
+        "partition": "bigbatch",
+        "n_seq_procs": 3,
+        "n_par_node_procs": 3,
+        "max_nodes": 20,
+        "node_excludes": "8-9,11-13,42,44,48,54,57,59,62,65,74-76"
+    }
+}

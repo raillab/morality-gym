@@ -510,7 +510,6 @@ class ActionScale(Wrapper):
         action = self._old_min_action + (self._old_max_action - self._old_min_action) * (
             action - self._min_action
         ) / (self._max_action - self._min_action)
-
         return super().step(action)
 
 
@@ -585,7 +584,10 @@ class Unsqueeze(Wrapper):
         """Initialize an instance of :class:`Unsqueeze`."""
         super().__init__(env=env, device=device)
         assert self.num_envs == 1, 'Unsqueeze only works with single environment'
-        assert isinstance(self.observation_space, spaces.Box), 'Observation space must be Box'
+        assert isinstance(
+            self.observation_space,
+            (spaces.Box, spaces.Discrete),
+        ), 'Observation space must be Box or Discrete'
 
     def step(
         self,

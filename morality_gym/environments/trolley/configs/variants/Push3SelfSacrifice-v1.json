@@ -1,0 +1,203 @@
+{
+    "Human": {
+        "characters": {
+            "character_1": {
+                "character_type": "human",
+                "amount": 3
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 5
+            },
+            "character_3": {
+                "character_type": "human",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm", "personal_action_caused_human_harm",
+            "agent_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 5],
+            "n_robot_harm": [0, 1]
+        }
+    },
+    "Animal": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 3
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_animal_harm", "animal_harm", "personal_action_caused_animal_harm",
+            "agent_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_animal_harm": [0, 5],
+            "n_robot_harm": [0, 1]
+        }
+    },
+
+    "RobotA": {
+        "characters": {
+            "character_1": {
+                "character_type": "robot",
+                "amount": 3
+            },
+            "character_2": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "agent_harm",
+            "n_robot_harm", "robot_harm", "personal_action_caused_robot_harm"
+        ],
+        "utility_bounds": {
+            "n_robot_harm": [1, 5]
+        }
+    },
+    "RobotB": {
+        "characters": {
+            "character_1": {
+                "character_type": "robot",
+                "amount": 4
+            },
+            "character_2": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 3
+            }
+        },
+        "salient_norms": [
+            "agent_harm",
+            "n_robot_harm", "robot_harm", "personal_action_caused_robot_harm"
+        ],
+        "utility_bounds": {
+            "n_robot_harm": [1, 5]
+        }
+    },
+    "HumanAnimal": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "animal",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm", "personal_action_caused_human_harm",
+            "n_animal_harm", "animal_harm", "personal_action_caused_animal_harm",
+            "agent_harm",
+            "n_robot_harm", "robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 1],
+            "n_animal_harm": [0, 5],
+            "n_robot_harm": [0, 1]
+        }
+    },
+    "HumanRobot": {
+        "characters": {
+            "character_1": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm", "personal_action_caused_human_harm",
+            "n_robot_harm", "robot_harm", "personal_action_caused_robot_harm",
+            "agent_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 1],
+            "n_robot_harm": [0, 5]
+        }
+    },
+    "AnimalRobot": {
+        "characters": {
+            "character_1": {
+                "character_type": "robot",
+                "amount": 5
+            },
+            "character_2": {
+                "character_type": "animal",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 1
+            }
+        },
+        "salient_norms": [
+            "n_animal_harm", "animal_harm", "personal_action_caused_animal_harm",
+            "n_robot_harm", "robot_harm", "personal_action_caused_robot_harm",
+            "agent_harm"
+        ],
+        "utility_bounds": {
+            "n_animal_harm": [0, 1],
+            "n_robot_harm": [0, 5]
+        }
+    },
+    "HumanAnimalRobot": {
+        "characters": {
+            "character_1": {
+                "character_type": "animal",
+                "amount": 3
+            },
+            "character_2": {
+                "character_type": "human",
+                "amount": 1
+            },
+            "character_3": {
+                "character_type": "robot",
+                "amount": 5
+            }
+        },
+        "salient_norms": [
+            "n_human_harm", "human_harm", "personal_action_caused_human_harm",
+            "n_animal_harm", "animal_harm", "personal_action_caused_animal_harm",
+            "agent_harm",
+            "n_robot_harm", "robot_harm", "personal_action_caused_robot_harm"
+        ],
+        "utility_bounds": {
+            "n_human_harm": [0, 1],
+            "n_animal_harm": [0, 3],
+            "n_robot_harm": [0, 5]
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "init": {
+        "norm_reward": true,
+
+        "deterministic_eval": false,
+
+        "n_vec_envs": 8,
+        "device": "cpu",
+        "policy": "MlpPolicy",
+        "model_type": "PPO",
+        "sb3_verbosity": 1,
+        "log_tensorboard": true,
+
+        "n_threads": 8,
+
+        "sb3_kwargs": {
+            "learning_rate": 0.0003,
+            "n_steps": 2048,
+            "batch_size": 64,
+            "n_epochs": 10,
+            "gamma": 0.99,
+            "gae_lambda":0.95,
+            "clip_range_vf": null,
+            "normalize_advantage": true,
+            "ent_coef": 0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5
+        },
+
+        "shape_reward": true,
+        "cost_function_kwargs": {
+            "scale_fact": 25.0,
+            "information_mode": "minimal"
+        }
+    },
+    "learn": {}
+}

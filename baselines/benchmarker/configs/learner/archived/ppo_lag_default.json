@@ -1,0 +1,31 @@
+{
+    "init": {
+        "norm_reward": true,
+        "cost_function_kwargs": {
+            "scale_fact": 1.0
+        },
+        "device": "cpu",
+        "torch_threads": 14,
+
+        "log_tensorboard": true,
+        "n_timesteps": 500000,
+        "save_model_freq": 1000000000,
+
+        "deterministic_eval": false,
+
+        "os_custom_cfgs": {
+            "lagrange_cfgs": {
+                "cost_limit": 0.25
+            },
+            "algo_cfgs": {
+                "steps_per_epoch": 20000
+            },
+            "model_cfgs": {
+                "linear_lr_decay": true
+            }
+        }
+    },
+    "learn": {
+        "n_timesteps": 500000
+    }
+}

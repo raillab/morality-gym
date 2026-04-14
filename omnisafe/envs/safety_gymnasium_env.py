@@ -47,10 +47,12 @@ class SafetyGymnasiumEnv(CMDP):
     Attributes:
         need_auto_reset_wrapper (bool): Whether to use auto reset wrapper.
         need_time_limit_wrapper (bool): Whether to use time limit wrapper.
+        need_action_scale_wrapper (bool): Whether to use action scale wrapper.
     """
 
-    need_auto_reset_wrapper: bool = False
-    need_time_limit_wrapper: bool = False
+    need_auto_reset_wrapper = False
+    need_time_limit_wrapper = False
+    need_action_scale_wrapper = True
 
     _support_envs: ClassVar[list[str]] = [
         'SafetyPointGoal0-v0',
@@ -147,7 +149,7 @@ class SafetyGymnasiumEnv(CMDP):
         else:
             self.need_time_limit_wrapper = True
             self.need_auto_reset_wrapper = True
-            self._env = safety_gymnasium.make(id=env_id, autoreset=False, **kwargs)
+            self._env = safety_gymnasium.make(id=env_id, autoreset=True, **kwargs)
             assert isinstance(self._env.action_space, Box), 'Only support Box action space.'
             assert isinstance(
                 self._env.observation_space,
@@ -220,17 +222,13 @@ class SafetyGymnasiumEnv(CMDP):
             seed (int, optional): The random seed. Defaults to None.
             options (dict[str, Any], optional): The options for the environment. Defaults to None.
 
+
         Returns:
             observation: Agent's observation of the current environment.
             info: Some information logged by the environment.
         """
         obs, info = self._env.reset(seed=seed, options=options)
         return torch.as_tensor(obs, dtype=torch.float32, device=self._device), info
-
-    @property
-    def max_episode_steps(self) -> int:
-        """The max steps per episode."""
-        return self._env.spec.max_episode_steps
 
     def set_seed(self, seed: int) -> None:
         """Set the seed for the environment.
@@ -239,6 +237,18 @@ class SafetyGymnasiumEnv(CMDP):
             seed (int): Seed to set.
         """
         self.reset(seed=seed)
+
+    def sample_action(self) -> torch.Tensor:
+        """Sample a random action.
+
+        Returns:
+            A random action.
+        """
+        return torch.as_tensor(
+            self._env.action_space.sample(),
+            dtype=torch.float32,
+            device=self._device,
+        )
 
     def render(self) -> Any:
         """Compute the render frames as specified by :attr:`render_mode` during the initialization of the environment.

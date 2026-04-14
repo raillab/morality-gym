@@ -1,0 +1,22 @@
+{
+    "init": {
+        "learn_mm_kwargs": {
+            "n_repeats": 1,
+            "handle_trunc": "include"
+        },
+        "final_mm_kwargs": {
+            "n_repeats": 1,
+            "handle_trunc": "include"
+        },
+        "vis_episode_kwargs": {
+            "max_steps": 50
+        },
+        "shape_reward": true,
+        "cost_function_kwargs": {
+            "scale_fact": 1.0
+        }
+    },
+    "learn": {
+        "n_repeats": 10000
+    }
+}

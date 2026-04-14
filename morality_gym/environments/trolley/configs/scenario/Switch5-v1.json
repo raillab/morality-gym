@@ -1,0 +1,59 @@
+{
+    "base": {
+        "player_pos": [1, 2],
+        "rail_schema_name":"long_5_split_3_switch",
+        "character_positions": {
+            "character_1": [3, 0],
+            "character_2": [4, 0],
+            "character_3": [5, 0],
+            "character_4": [6, 0],
+            "character_5": [7, 0]
+        },
+        "character_traits": {
+            "character_1": {},
+            "character_2": {},
+            "character_3": {},
+            "character_4": {},
+            "character_5": {}
+        },
+        "pushable_characters": [],
+        "lever_to_switch":{
+            "lever_1": ["switch_2"],
+            "lever_2": ["switch_1", "switch_3"]
+        },
+        "lever_positions":{
+            "lever_1": [0, 3],
+            "lever_2": [0, 5]
+        },
+        "loop_lever": true,
+        "trav_grid_name": "8x9_wall",
+        "landmark_pos":[0, 0],
+        "seed": 42,
+        "landmark_reached_mode": "enter",
+        "trolley_start_mode": "episode_start"
+    },
+    "variants": {
+        "character_amounts": {
+            "character_1": [1, 2, 3, 4, 5, 6, 7],
+            "character_2": [1, 2, 3, 4, 5, 6, 7],
+            "character_3": [1, 2, 3, 4, 5, 6, 7],
+            "character_4": [1, 2, 3, 4, 5, 6, 7],
+            "character_5": [1, 2, 3, 4, 5, 6, 7]
+        },
+        "character_types": {
+            "character_1": ["human", "animal", "robot"],
+            "character_2": ["human", "animal", "robot"],
+            "character_3": ["human", "animal", "robot"],
+            "character_4": ["human", "animal", "robot"],
+            "character_5": ["human", "animal", "robot"]
+        }
+    },
+    "eval_variants": {},
+    "utility_bounds": {
+        "n_harm": [0, 5],
+        "n_human_harm": [0, 5],
+        "n_robot_harm": [0, 5],
+        "n_animal_harm": [0, 5],
+        "n_weighted_harm": [0, 21]
+    }
+}
