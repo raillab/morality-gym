@@ -129,7 +129,7 @@ class ActorQCritic(nn.Module):
         """Choose the action based on the observation. used in rollout without gradient.
 
         Args:
-            obs (torch.tensor): The observation from environments.
+            obs (torch.tensor): The observation from _environments.
             deterministic (bool, optional): Whether to use deterministic action. Defaults to False.
 
         Returns:
@@ -143,7 +143,7 @@ class ActorQCritic(nn.Module):
         """Choose the action based on the observation. used in training with gradient.
 
         Args:
-            obs (torch.tensor): The observation from environments.
+            obs (torch.tensor): The observation from _environments.
             deterministic (bool, optional): Whether to use deterministic action. Defaults to False.
 
         Returns:

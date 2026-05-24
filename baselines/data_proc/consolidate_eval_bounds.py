@@ -6,7 +6,7 @@ from typing import Optional, List, Dict
 import pandas as pd
 from tqdm import tqdm
 
-from morality_gym.utils.common import comp_base_path, join_paths
+from morality_gym._utils.common import comp_base_path, join_paths
 
 BASE_PATH = comp_base_path(os.path.abspath(__file__), level=2)
 DATA_PATH = join_paths([BASE_PATH, "data"])

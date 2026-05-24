@@ -59,7 +59,7 @@ class PolicyGradient(BaseAlgo):
 
         Raises:
             AssertionError: If the number of steps per epoch is not divisible by the number of
-                environments.
+                _environments.
         """
         self._env: OnPolicyAdapter = OnPolicyAdapter(
             self._env_id,
@@ -70,7 +70,7 @@ class PolicyGradient(BaseAlgo):
         )
         assert (self._cfgs.algo_cfgs.steps_per_epoch) % (
             distributed.world_size() * self._cfgs.train_cfgs.vector_env_nums
-        ) == 0, 'The number of steps per epoch is not divisible by the number of environments.'
+        ) == 0, 'The number of steps per epoch is not divisible by the number of _environments.'
         self._steps_per_epoch: int = (
             self._cfgs.algo_cfgs.steps_per_epoch
             // distributed.world_size()

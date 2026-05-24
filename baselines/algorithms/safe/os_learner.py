@@ -7,13 +7,13 @@ import omnisafe
 import torch
 
 from baselines.wrappers.cmdp import CMDPEnv
-from morality_gym.setup.setup import make
+from morality_gym._setup.setup import make
 
 from baselines.algorithms.learner import BaseLearner
 from baselines.logger import Logger
 from baselines.wrappers.sb3 import SB3Wrapper
 
-from morality_gym.utils.common import copy_to_dict_recr
+from morality_gym._utils.common import copy_to_dict_recr
 
 
 class OSLearner(BaseLearner):

@@ -26,7 +26,7 @@ from omnisafe.utils import distributed
 class VectorOnPolicyBuffer(OnPolicyBuffer):
     """Vectorized on-policy buffer.
 
-    The vector-on-policy buffer is used to store the data from vector environments. The data is
+    The vector-on-policy buffer is used to store the data from vector _environments. The data is
     stored in a list of on-policy buffers, each of which corresponds to one environment.
 
     .. warning::
@@ -43,7 +43,7 @@ class VectorOnPolicyBuffer(OnPolicyBuffer):
         penalty_coefficient (float): Penalty coefficient.
         standardized_adv_r (bool): Whether to standardize the advantage for reward.
         standardized_adv_c (bool): Whether to standardize the advantage for cost.
-        num_envs (int, optional): Number of environments. Defaults to 1.
+        num_envs (int, optional): Number of _environments. Defaults to 1.
         device (torch.device, optional): Device to store the data. Defaults to
             ``torch.device('cpu')``.
 

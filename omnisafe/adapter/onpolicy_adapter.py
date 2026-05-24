@@ -35,7 +35,7 @@ class OnPolicyAdapter(OnlineAdapter):
 
     Args:
         env_id (str): The environment id.
-        num_envs (int): The number of environments.
+        num_envs (int): The number of _environments.
         seed (int): The random seed.
         cfgs (Config): The configuration.
     """

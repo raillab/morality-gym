@@ -44,7 +44,7 @@ class OnlineAdapter:
 
     Args:
         env_id (str): The environment id.
-        num_envs (int): The number of parallel environments.
+        num_envs (int): The number of parallel _environments.
         seed (int): The random seed.
         cfgs (Config): The configuration.
     """
@@ -76,7 +76,7 @@ class OnlineAdapter:
 
             self._step_callback = dummy_step_callback
 
-        # Allow for environments to be made via callable func
+        # Allow for _environments to be made via callable func
         if make_env_fn is not None:
             self._env: CMDP = make_env_fn(is_eval=False)
             self._eval_env: CMDP = make_env_fn(is_eval=True)

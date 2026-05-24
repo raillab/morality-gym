@@ -117,7 +117,7 @@ class QCritic(Critic):
         when initializing the network, and then use the index 0 to get the Q-value.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             act (torch.Tensor): Action from actor .
 
         Returns:

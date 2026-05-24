@@ -59,10 +59,10 @@ class CMDP(ABC):
 
     @classmethod
     def support_envs(cls) -> list[str]:
-        """The supported environments.
+        """The supported _environments.
 
         Returns:
-            The supported environments.
+            The supported _environments.
         """
         return cls._support_envs
 
@@ -90,7 +90,7 @@ class CMDP(ABC):
 
     @property
     def num_envs(self) -> int:
-        """The number of parallel environments."""
+        """The number of parallel _environments."""
         return self._num_envs
 
     @property
@@ -377,10 +377,10 @@ class EnvRegister:
         raise ValueError(f'{env_id} is not supported by any environment class')
 
     def support_envs(self) -> list[str]:
-        """The supported environments.
+        """The supported _environments.
 
         Returns:
-            The supported environments.
+            The supported _environments.
         """
         return list({env_id for env_ids in self._support_envs.values() for env_id in env_ids})
 

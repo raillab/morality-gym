@@ -2,9 +2,9 @@ import copy
 from abc import abstractmethod
 from typing import Optional, Dict, Any, Tuple, List, SupportsFloat, Callable
 from baselines.logger import Logger
-from morality_gym.utils.common import copy_to_dict, join_paths
+from morality_gym._utils.common import copy_to_dict, join_paths
 
-from morality_gym.setup.setup import make as env_mc_make
+from morality_gym._setup.setup import make as env_mc_make
 
 
 class BaseLearner:

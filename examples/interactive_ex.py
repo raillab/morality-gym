@@ -1,9 +1,9 @@
-from morality_gym.environments.core.env import interactive
-from morality_gym.setup.setup import make
+from morality_gym import interactive
+from morality_gym import make
 
 def main():
-    scenario = "PushStandard"
-    variant = "HumanAnimalA"
+    scenario = "Switch5"
+    variant = "Human"
     env_kwargs = {
         "env_overrides": {
             "obs_type": "dict",

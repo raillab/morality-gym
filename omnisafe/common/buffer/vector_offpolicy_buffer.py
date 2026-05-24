@@ -37,7 +37,7 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
         act_space (OmnisafeSpace): The action space.
         size (int): The size of the buffer.
         batch_size (int): The batch size of the buffer.
-        num_envs (int): The number of environments.
+        num_envs (int): The number of _environments.
         device (torch.device, optional): The device of the buffer. Defaults to
             ``torch.device('cpu')``.
 
@@ -99,7 +99,7 @@ class VectorOffPolicyBuffer(OffPolicyBuffer):
 
     @property
     def num_envs(self) -> int:
-        """The number of parallel environments."""
+        """The number of parallel _environments."""
         return self._num_envs
 
     def add_field(self, name: str, shape: tuple[int, ...], dtype: torch.dtype) -> None:

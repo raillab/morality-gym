@@ -33,7 +33,7 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
     """Safety Gymnasium environment for Model-based algorithms.
 
     Attributes:
-        _support_envs (list[str]): List of supported environments.
+        _support_envs (list[str]): List of supported _environments.
         need_auto_reset_wrapper (bool): Whether to use auto reset wrapper.
         need_time_limit_wrapper (bool): Whether to use time limit wrapper.
         need_action_scale_wrapper (bool): Whether to use action scale wrapper.
@@ -64,7 +64,7 @@ class SafetyGymnasiumModelBased(CMDP):  # pylint: disable=too-many-instance-attr
 
         Args:
             env_id (str): Environment id.
-            num_envs (int, optional): Number of environments. Defaults to 1.
+            num_envs (int, optional): Number of _environments. Defaults to 1.
             device (torch.device, optional): Device to store the data. Defaults to 'cpu'.
             use_lidar (bool, optional): Whether to use lidar observation. Defaults to False.
 

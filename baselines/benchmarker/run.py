@@ -3,7 +3,7 @@ from typing import Dict, Any, Optional, Union
 
 from baselines.benchmarker.utils import load_base_paths
 from baselines.logger import Logger
-from morality_gym.utils.common import join_paths
+from morality_gym._utils.common import join_paths
 
 
 def _get_runs_path():
@@ -43,7 +43,7 @@ def _create_learner(
         from baselines.algorithms.standard.sb3 import SB3Learner
         learner = SB3Learner(logger=logger, **init_kwargs)
 
-        if is_interactive:  # For debugging environments
+        if is_interactive:  # For debugging _environments
             from baselines.wrappers.sb3 import interactive
             interactive(learner.eval_env)
             exit()

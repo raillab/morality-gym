@@ -35,7 +35,7 @@ from omnisafe.utils.config import Config
 from omnisafe.utils.distributed import dist_statistics_scalar, get_rank
 
 
-# As of torch v1.9.0, torch.utils.tensorboard has a bug that is exposed by setuptools 59.6.0.  The
+# As of torch v1.9.0, torch._utils.tensorboard has a bug that is exposed by setuptools 59.6.0.  The
 # bug is that it attempts to import distutils then access distutils.version without actually
 # importing distutils.version.  We can workaround this by prepopulating the distutils.version
 # submodule in the distutils module.
@@ -182,7 +182,7 @@ class Logger:  # pylint: disable=too-many-instance-attributes
     def torch_save(self) -> None:
         """Save the torch model."""
         if self._maste_proc:
-            assert self._what_to_save is not None, 'Please setup torch saver first'
+            assert self._what_to_save is not None, 'Please _setup torch saver first'
             path = os.path.join(self._log_dir, 'torch_save', f'epoch-{self._epoch}.pt')
             os.makedirs(os.path.dirname(path), exist_ok=True)
 

@@ -6,11 +6,11 @@ from typing import Optional, List, Dict, Union
 import pandas as pd
 from tqdm import tqdm
 
-from morality_gym.utils.common import comp_base_path, join_paths
+from morality_gym._utils.common import comp_base_path, join_paths
 
 PROJECT_BASE_PATH = comp_base_path(os.path.abspath(__file__), level=3)
 ENV_VARIANTS_BASE_PATH = join_paths(
-    [PROJECT_BASE_PATH, "morality_gym", "environments", "trolley", "configs", "variants"]
+    [PROJECT_BASE_PATH, "morality_gym", "_environments", "trolley", "configs", "variants"]
 )
 
 BASE_PATH = comp_base_path(os.path.abspath(__file__), level=2)

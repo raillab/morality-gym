@@ -70,7 +70,7 @@ class ActorBuilder:
             - `mlp`: Multi-layer perceptron actor, typically used in DDPG and TD3.
             - `vae`: Variational AutoEncoder actor, used for continual and low-data learning.
             - `perturbation`: Perturbation Actor for domain randomization.
-            - `discrete`: Discrete/Categorical actor, used in environments with discrete action spaces.
+            - `discrete`: Discrete/Categorical actor, used in _environments with discrete action spaces.
 
         Args:
             actor_type (str): The type of actor network to build.

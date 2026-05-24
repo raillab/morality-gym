@@ -5,7 +5,7 @@ import pandas as pd
 from tensorboard.backend.event_processing import event_accumulator
 # import tensorflow as tf
 
-from morality_gym.utils.common import join_paths
+from morality_gym._utils.common import join_paths
 
 
 def tb_events_to_dataframe_dict(event_file_path: str) -> Dict[str, pd.DataFrame]:
@@ -81,7 +81,7 @@ def consolidate(logs_path, cons_logs_path):
             seed = curr_row["seed"],
             base_env = curr_row["env.base"],
             variant = curr_row["env.variant"],
-            mc = curr_row["morality_chain"]
+            mc = curr_row["_morality_chain"]
         )
         log_name = curr_row["logger.name"]
 

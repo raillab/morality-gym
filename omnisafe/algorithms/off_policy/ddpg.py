@@ -59,7 +59,7 @@ class DDPG(BaseAlgo):
 
         Raises:
             AssertionError: If the number of steps per epoch is not divisible by the number of
-                environments.
+                _environments.
             AssertionError: If the total number of steps is not divisible by the number of steps per
                 epoch.
         """
@@ -71,7 +71,7 @@ class DDPG(BaseAlgo):
         )
         assert (
             self._cfgs.algo_cfgs.steps_per_epoch % self._cfgs.train_cfgs.vector_env_nums == 0
-        ), 'The number of steps per epoch is not divisible by the number of environments.'
+        ), 'The number of steps per epoch is not divisible by the number of _environments.'
 
         assert (
             int(self._cfgs.train_cfgs.total_steps) % self._cfgs.algo_cfgs.steps_per_epoch == 0

@@ -69,7 +69,7 @@ class CategoricalActor(Actor):
             instead.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             Categorical distribution over actions based on the actor's logits.
@@ -86,7 +86,7 @@ class CategoricalActor(Actor):
         - If ``deterministic`` is ``False``, the predicted action is sampled from the distribution.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to False.
 
         Returns:
@@ -105,7 +105,7 @@ class CategoricalActor(Actor):
         """Forward method.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             The current distribution.

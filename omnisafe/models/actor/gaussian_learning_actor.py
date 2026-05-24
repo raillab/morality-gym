@@ -69,7 +69,7 @@ class GaussianLearningActor(GaussianActor):
             instead.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             The normal distribution of the mean and standard deviation from the actor.
@@ -87,7 +87,7 @@ class GaussianLearningActor(GaussianActor):
         - If ``deterministic`` is ``False``, the predicted action is sampled from the distribution.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to False.
 
         Returns:
@@ -103,7 +103,7 @@ class GaussianLearningActor(GaussianActor):
         """Forward method.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             The current distribution.

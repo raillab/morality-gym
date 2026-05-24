@@ -101,7 +101,7 @@ def fork(
     if os.getenv('MASTER_ADDR') is not None and os.getenv('IN_DIST') is None:
         dist.init_process_group(backend=backend)
         os.environ['IN_DIST'] = '1'
-    # check if MPI is already setup..
+    # check if MPI is already _setup..
     if parallel > 1 and os.getenv('MASTER_ADDR') is None:
         # MPI is not yet set up: quit parent process and start N child processes
         if device != 'cpu':

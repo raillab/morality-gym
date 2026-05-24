@@ -40,7 +40,7 @@ class DiscreteEnv(CMDP):
 
     Args:
         env_id (str): Environment id.
-        num_envs (int, optional): Number of environments. Defaults to 1.
+        num_envs (int, optional): Number of _environments. Defaults to 1.
         device (torch.device, optional): Device to store the data. Defaults to
             ``torch.device('cpu')``.
 

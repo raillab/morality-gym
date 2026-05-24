@@ -89,7 +89,7 @@ class ConstraintActorCritic(ActorCritic):
         """Choose action based on observation.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to False.
 
         Returns:
@@ -116,7 +116,7 @@ class ConstraintActorCritic(ActorCritic):
         """Choose action based on observation.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to False.
 
         Returns:

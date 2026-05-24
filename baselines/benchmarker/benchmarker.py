@@ -8,7 +8,7 @@ from typing import Optional, List, Union, Dict, Tuple, Any
 from tqdm import tqdm
 
 from baselines.benchmarker.utils import load_base_paths
-from morality_gym.utils.common import comp_base_path, create_or_clear_folder, join_paths, copy_to_dict_recr, \
+from morality_gym._utils.common import comp_base_path, create_or_clear_folder, join_paths, copy_to_dict_recr, \
     dot_d_to_nested
 
 BASE_PATH = comp_base_path(os.path.abspath(__file__), level=1)

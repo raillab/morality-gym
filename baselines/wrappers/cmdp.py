@@ -7,7 +7,7 @@ from gymnasium.vector import AsyncVectorEnv
 
 import omnisafe
 from baselines.wrappers.sb3 import SB3Wrapper
-from morality_gym.morality_chain.morality_chain import MoralityChain
+from morality_gym._morality_chain.morality_chain import MoralityChain
 from omnisafe.envs import CMDP, env_register
 
 
@@ -144,7 +144,7 @@ class CMDPEnv(CMDP):
         torch.Tensor,
         Dict[str, Any],
     ]:
-        # N.B. AsyncVectorEnv auto resets environments
+        # N.B. AsyncVectorEnv auto resets _environments
 
         action = torch.flatten(action).tolist()
         obs, reward, is_term, is_trunc, info = self._vec_env.step(action)
@@ -237,7 +237,7 @@ class CMDPEnv(CMDP):
 
 
 def main():
-    from morality_gym.setup.setup import make  # as env_mt_make
+    from morality_gym._setup.setup import make  # as env_mt_make
     env_kwargs = {
         "scenario_overrides": {
             "seed": 42,
@@ -260,7 +260,7 @@ def main():
     #     cost_function_kwargs=cost_function_kwargs
     # )
     # cmdp_env = CMDPEnv(
-    #     env=env, morality_chain=mc,
+    #     env=env, _morality_chain=mc,
     #     return_bounds=return_bounds,
     #     norm_reward=True,
     #     cost_function_kwargs=cost_function_kwargs,

@@ -74,7 +74,7 @@ class MLPActor(Actor):
         - If ``deterministic`` is ``False``, the predicted action is sampled from the distribution.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to True.
         """
         action = self.net(obs)
@@ -102,7 +102,7 @@ class MLPActor(Actor):
         """Forward method implementation.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             The distribution of the action.

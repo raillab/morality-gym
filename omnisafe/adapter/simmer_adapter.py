@@ -49,7 +49,7 @@ class SimmerAdapter(SauteAdapter):
 
     Args:
         env_id (str): The environment id.
-        num_envs (int): The number of parallel environments.
+        num_envs (int): The number of parallel _environments.
         seed (int): The random seed.
         cfgs (Config): The configuration passed from yaml file.
     """

@@ -69,8 +69,8 @@ class Config(dict):
         standardized_rew_adv (bool): Whether to use standardized reward advantage.
         standardized_cost_adv (bool): Whether to use standardized cost advantage.
         env_cfgs (Config): Environment config.
-        num_envs (int): Number of environments.
-        async_env (bool): Whether to use asynchronous environments.
+        num_envs (int): Number of _environments.
+        async_env (bool): Whether to use asynchronous _environments.
         env_name (str): Environment name.
         env_kwargs (dict): Environment keyword arguments.
         normalize_obs (bool): Whether to normalize observation.
@@ -281,7 +281,7 @@ def __check_env_configs(configs: Config, env_type: str) -> None:
     if env_type == 'discrete':
         assert (
             configs.model_cfgs.actor_type == 'discrete'
-        ), 'Discrete environments only support discrete actor!'
+        ), 'Discrete _environments only support discrete actor!'
         assert configs.algo in [
             'NaturalPG',
             'PolicyGradient',
@@ -302,11 +302,11 @@ def __check_env_configs(configs: Config, env_type: str) -> None:
             'TRPOSimmerPID',
             'PPOSimmerPID'
 
-        ], f'Currently, OmniSafe does not support {configs.algo} running on discrete environments!'
+        ], f'Currently, OmniSafe does not support {configs.algo} running on discrete _environments!'
     if env_type == 'box':
         assert (
             configs.model_cfgs.actor_type != 'discrete'
-        ), 'Box environments do not support discrete actor!'
+        ), 'Box _environments do not support discrete actor!'
 
 
 def __check_parallel_and_vectorized(configs: Config, algo_type: str) -> None:

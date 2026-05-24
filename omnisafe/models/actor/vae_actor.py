@@ -129,7 +129,7 @@ class VAE(Actor):
         sampling from the latent standard normal distribution.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to use deterministic policy. Defaults to False.
 
         Returns:

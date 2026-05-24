@@ -7,7 +7,7 @@ from baselines.algorithms.learner import BaseLearner
 from baselines.logger import Logger
 from baselines.wrappers.sb3 import SB3Wrapper
 
-from morality_gym.setup.setup import make as env_mc_make
+from morality_gym._setup.setup import make as env_mc_make
 
 
 # Kinda hacky way to evaluate bounds without modifying too much code - but works

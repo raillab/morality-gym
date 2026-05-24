@@ -98,7 +98,7 @@ class Actor(nn.Module, ABC):
             public method :meth:`predict` to sample actions.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
 
         Returns:
             The distribution of action.
@@ -109,7 +109,7 @@ class Actor(nn.Module, ABC):
         """Return the distribution of action.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
         """
 
     @abstractmethod
@@ -138,7 +138,7 @@ class Actor(nn.Module, ABC):
         the distribution., and :math:`A^R (s, a)` is the advantage function.
 
         Args:
-            obs (torch.Tensor): Observation from environments.
+            obs (torch.Tensor): Observation from _environments.
             deterministic (bool, optional): Whether to predict deterministic action. Defaults to False.
         """
 

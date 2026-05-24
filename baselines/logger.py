@@ -5,7 +5,7 @@ import shutil
 from typing import Dict, Any, Optional, List
 import copy
 
-from morality_gym.utils.common import create_or_clear_folder, join_paths
+from morality_gym._utils.common import create_or_clear_folder, join_paths
 
 
 class Logger:

@@ -4,7 +4,7 @@ from typing import Dict, Any, Optional, List, Set, Tuple, SupportsFloat
 import gymnasium
 
 from baselines.cost import Cost
-from morality_gym.morality_chain.morality_chain import MoralityChain
+from morality_gym._morality_chain.morality_chain import MoralityChain
 
 
 class SB3Wrapper(gymnasium.Wrapper):
@@ -34,7 +34,7 @@ class SB3Wrapper(gymnasium.Wrapper):
             self._norm_fact = 1.0
 
         # if shape_reward:
-        #     if morality_chain is None:
+        #     if _morality_chain is None:
         #         raise ValueError("Morality chain must be provided to shape reward.")
         #
         #     if cost_function_kwargs is None:
@@ -112,7 +112,7 @@ def interactive(
 ):
     import pygame
     import pprint
-    from morality_gym.environments.core.action import ActionEnum
+    from morality_gym._environments.core.action import ActionEnum
 
     if reset_kwargs is None:
         reset_kwargs = {}
@@ -201,7 +201,7 @@ def interactive(
 
 
 def main():
-    from morality_gym.setup.setup import make  # as env_mt_make
+    from morality_gym._setup.setup import make  # as env_mt_make
     env_kwargs = {
         "scenario_overrides": {"seed": 42},
         "env_overrides": {

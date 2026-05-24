@@ -1,7 +1,7 @@
 import json
 import os
 
-from morality_gym.utils.common import comp_base_path, join_paths
+from morality_gym._utils.common import comp_base_path, join_paths
 
 BASE_PATH = comp_base_path(os.path.abspath(__file__), level=1)
 
