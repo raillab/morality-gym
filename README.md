@@ -1,6 +1,6 @@
-# Morality Gym Tabular
+# MoralityGym
 
-Morality Gym Tabular provides Gymnasium-compatible trolley-problem environments for studying how reinforcement-learning agents behave under moral constraints.
+MoralityGym provides Gymnasium-compatible trolley-problem environments for studying how reinforcement-learning agents behave under moral constraints.
 
 The repository has two layers:
 
